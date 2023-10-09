@@ -1,6 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<persistence xmlns="http://java.sun.com/xml/ns/persistence" version="2.0">
-  <persistence-unit name="default">
+<persistence xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xmlns="http://xmlns.jcp.org/xml/ns/persistence"
+             xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_2.xsd"
+             version="2.2">
+    <persistence-unit name="StudsPU">
+        <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
 
-  </persistence-unit>
+        <jta-data-source>java:jboss/datasources/ExampleDS</jta-data-source>
+        <class>org.vad1mchk.webprogr.lab03.entities.Shot</class>
+        <properties>
+            <property name="eclipselink.ddl-generation" value="create-tables"/>
+        </properties>
+    </persistence-unit>
 </persistence>

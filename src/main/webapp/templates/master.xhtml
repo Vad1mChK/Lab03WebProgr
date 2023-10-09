@@ -4,8 +4,20 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
-   <f:view>
-      <h:outputLabel value="Hello, world"/>
-   </f:view>
+>
+<h:head>
+    <h:outputStylesheet library="css" name="vad1mchk.css"/>
+    <link rel="icon" href="${resource['img/favicon.ico']}"/>
+    <title>&laquo;Веб-программирование&raquo;, лаб. 3</title>
+    <ui:insert name="heed">
+        <!-- Script imports, custom titles and styles go here -->
+    </ui:insert>
+</h:head>
+<h:body>
+    <ui:include src="header.xhtml"/>
+    <ui:insert name="main">
+        <h1>Внимание</h1>
+        <p>Спасибо за внимание</p>
+    </ui:insert>
+</h:body>
 </html>
