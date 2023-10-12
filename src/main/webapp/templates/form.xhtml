@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Created by IntelliJ IDEA.
+  User: vadim
+  Date: 09.10.2023
+  Time: 15:43
+-->
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+>
+
+<h:body>
+    <div class="black-box centered" id="shooting-gallery">
+        <h1>Тир</h1>
+        <canvas id="aim" width="360" height="360">
+        </canvas>
+        <h:form>
+            <table>
+                <tr>
+                    <td>X:</td>
+                    <td>
+                        <table>
+                            <tr>
+                                <td>
+                                    <h:selectBooleanCheckbox styleClass="x" value="${shotBean.xMinus3}" id="x-3" />
+                                    <h:outputLabel for="x-3" value="${shotBean.xMinus3}"/>
+                                </td>
+                                <td>
+                                    <h:selectBooleanCheckbox styleClass="x" value="${shotBean.xMinus2}" id="x-2" />
+                                    <h:outputLabel for="x-2" value="${shotBean.xMinus2}"/>
+                                </td>
+                                <td>
+                                    <h:selectBooleanCheckbox styleClass="x" value="${shotBean.xMinus1}" id="x-1" />
+                                    <h:outputLabel for="x-1" value="${shotBean.xMinus1}"/>
+                                </td>
+                                <td>
+                                    <h:selectBooleanCheckbox styleClass="x" value="${shotBean.x0}" id="x0" name="x" />
+                                    <h:outputLabel for="x0" value="${shotBean.x0}"/>
+                                </td>
+                                <td>
+                                    <h:selectBooleanCheckbox styleClass="x" value="${shotBean.x1}" id="x1" name="x" />
+                                    <h:outputLabel for="x1" value="${shotBean.x1}"/>
+                                </td>
+                                <td>
+                                    <h:selectBooleanCheckbox styleClass="x" value="${shotBean.x2}" id="x2" name="x" />
+                                    <h:outputLabel for="x2" value="${shotBean.x2}"/>
+                                </td>
+                                <td>
+                                    <h:selectBooleanCheckbox styleClass="x" value="${shotBean.x3}" id="x3" name="x" />
+                                    <h:outputLabel for="x3" value="${shotBean.x3}"/>
+                                </td>
+                                <td>
+                                    <h:selectBooleanCheckbox styleClass="x" value="${shotBean.x4}" id="x4" name="x" />
+                                    <h:outputLabel for="x4" value="${shotBean.x4}"/>
+                                </td>
+                                <td>
+                                    <h:selectBooleanCheckbox styleClass="x" value="${shotBean.x5}" id="x5" name="x" />
+                                    <h:outputLabel for="x5" value="${shotBean.x5}"/>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Y:</td>
+                    <td>
+                        <table><tr><td>
+                            <h:inputText id="y"/>
+                        </td></tr></table>
+                    </td>
+                </tr>
+                <tr>
+                    <td>R:</td>
+                    <td>
+                        <h:selectOneRadio value="#{shotBean.r}" id="r-sel">
+                            <f:selectItem name="r" itemValue="1" itemLabel="1"/>
+                            <f:selectItem name="r" itemValue="2" itemLabel="2"/>
+                            <f:selectItem name="r" itemValue="3" itemLabel="3"/>
+                            <f:selectItem name="r" itemValue="4" itemLabel="4"/>
+                            <f:selectItem name="r" itemValue="5" itemLabel="5"/>
+                        </h:selectOneRadio>
+                    </td>
+                </tr>
+            </table>
+        </h:form>
+    </div>
+</h:body>
+
+</html>

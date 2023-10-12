@@ -5,10 +5,10 @@ function getDateTime() {
 
 const CLOCK_UPDATE_PERIOD_MS = 6_000
 
-window.onload = () => {
+document.addEventListener('DOMContentLoaded', () => {
     const clock = document.getElementById("clock")
     clock.innerHTML = getDateTime()
     window.setInterval(() => {
         clock.innerHTML = getDateTime()
     }, CLOCK_UPDATE_PERIOD_MS)
-}
+})

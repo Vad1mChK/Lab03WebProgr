@@ -36,15 +36,64 @@ public class Shot {
         this.x = x;
         this.y = y;
         this.r = r;
-        this.hit = checkShot(x, y, r);
+        this.hit = checkHit(x, y, r);
         this.creationDatetime = ZonedDateTime.now(zone);
     }
 
-    private boolean checkShot(BigDecimal x, BigDecimal y, BigDecimal r) {
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public BigDecimal getX() {
+        return x;
+    }
+
+    public void setX(BigDecimal x) {
+        this.x = x;
+    }
+
+    public BigDecimal getY() {
+        return y;
+    }
+
+    public void setY(BigDecimal y) {
+        this.y = y;
+    }
+
+    public BigDecimal getR() {
+        return r;
+    }
+
+    public void setR(BigDecimal r) {
+        this.r = r;
+    }
+
+    public boolean isHit() {
+        return hit;
+    }
+
+    public ZonedDateTime getCreationDatetime() {
+        return creationDatetime;
+    }
+
+    public void setCreationDatetime(ZonedDateTime creationDatetime) {
+        this.creationDatetime = creationDatetime;
+    }
+
+    public void updateHit() {
+        this.hit = checkHit(this.x, this.y, this.r);
+    }
+
+    private boolean checkHit(BigDecimal x, BigDecimal y, BigDecimal r) {
         int xSign = x.compareTo(BigDecimal.ZERO);
         int ySign = y.compareTo(BigDecimal.ZERO);
         BigDecimal two = BigDecimal.ONE.add(BigDecimal.ONE);
         BigDecimal halfR = r.divide(two, RoundingMode.HALF_DOWN);
+
         // Assuming the edge points belong to the area onwards
         if (xSign <= 0 && ySign <= 0) { // 3rd quadrant (circle with radius r/2)
             return (x.pow(2)).add(y.pow(2)).compareTo(halfR.pow(2)) <= 0;
