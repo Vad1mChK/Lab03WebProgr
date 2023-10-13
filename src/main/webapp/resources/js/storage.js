@@ -1,7 +1,7 @@
 const DEFAULT_R_VALUE = 1
 
 function getStoredXs() {
-    return localStorage.getItem('x')
+    return json.parse(localStorage.getItem('x')) || []
 }
 
 function getStoredY() {
@@ -13,27 +13,27 @@ function getStoredR() {
 }
 
 function getR() {
-    for (rElem in document.getElementsByName("r")) {
+    for (let rElem of document.getElementsByName("r")) {
         if (rElem.checked) {
-            return rElem.value
+            return rElem.value;
         }
     }
-    return getStoredR ?? DEFAULT_R_VALUE
+    return getStoredR() ?? DEFAULT_R_VALUE;
 }
 
 function setStoredXs(xs) {
-    localStorage.setItem('x', xs)
+    localStorage.setItem('x', JSON.stringify(xs));
 }
 
 function setStoredY(y) {
-    localStorage.setItem('y', y)
+    localStorage.setItem('y', y);
 }
 
 function setStoredR(r) {
-    localStorage.setItem('r', r)
+    localStorage.setItem('r', r);
 }
 
-document.addEventListener('DOMContentLoader', () => {
+document.addEventListener('DOMContentLoaded', () => {
     const storedXs = [...getStoredXs()]
     const storedY = getStoredY()
     const storedR = getStoredR() ?? DEFAULT_R_VALUE
