@@ -178,10 +178,20 @@ table, th, td {
 }
 
 #aim {
+    width: 400px;
+    height: 400px;
     text-align: center;
     mix-blend-mode: screen;
     cursor: crosshair;
     border: 2px solid #f4f4f4;
+}
+
+#aim * {
+    position: relative;
+    max-width: 400px;
+    max-height: 400px;
+    left: 0;
+    top: 0;
 }
 
 #shooting-gallery table, #shooting-gallery th, #shooting-gallery td {

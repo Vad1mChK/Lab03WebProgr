@@ -5,6 +5,7 @@ import org.vad1mchk.webprogr.lab03.entities.Shot;
 import javax.annotation.ManagedBean;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.context.FacesContext;
+import javax.inject.Named;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.math.BigDecimal;
@@ -12,13 +13,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+@Named("shotBean")
 @SessionScoped
 @ManagedBean
 public class ShotBean implements Serializable {
     private static final String PERSISTENCE_UNIT = "StudsPU";
 
     private Shot shot;
-    private List<Shot> shots;
+    private List<Shot> storedShots;
 
     private EntityManagerFactory managerFactory;
     private EntityManager manager;
@@ -26,7 +28,7 @@ public class ShotBean implements Serializable {
 
     public ShotBean() {
         this.shot = new Shot();
-        this.shots = new ArrayList<>();
+        this.storedShots = new ArrayList<>();
     }
 
     private void connect() {
@@ -39,7 +41,7 @@ public class ShotBean implements Serializable {
         try {
             transaction.begin();
             Query query = manager.createQuery("SELECT s FROM Shot s");
-            shots = query.getResultList();
+            storedShots = query.getResultList();
             transaction.commit();
         } catch (RuntimeException e) {
             if (transaction.isActive()) {
@@ -53,7 +55,7 @@ public class ShotBean implements Serializable {
         try {
             transaction.begin();
             manager.persist(shot);
-            shots.add(shot);
+            storedShots.add(shot);
             shot = new Shot();
             transaction.commit();
         } catch (RuntimeException e) {
@@ -77,7 +79,7 @@ public class ShotBean implements Serializable {
             shot.setR(new BigDecimal(parameters.get("r")));
             shot.updateHit();
             manager.persist(shot);
-            shots.add(shot);
+            storedShots.add(shot);
             shot = new Shot();
             transaction.commit();
         } catch (RuntimeException e) {
@@ -93,7 +95,7 @@ public class ShotBean implements Serializable {
             transaction.begin();
             Query query = manager.createQuery("DELETE FROM Shot");
             query.executeUpdate();
-            shots.clear();
+            storedShots.clear();
             transaction.commit();
         } catch (RuntimeException e) {
             if (transaction.isActive()) {
@@ -112,11 +114,11 @@ public class ShotBean implements Serializable {
         this.shot = shot;
     }
 
-    public List<Shot> getShots() {
-        return shots;
+    public List<Shot> getStoredShots() {
+        return storedShots;
     }
 
-    public void setShots(List<Shot> shots) {
-        this.shots = shots;
+    public void setStoredShots(List<Shot> storedShots) {
+        this.storedShots = storedShots;
     }
 }
