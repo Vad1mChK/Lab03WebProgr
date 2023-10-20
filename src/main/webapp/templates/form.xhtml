@@ -16,11 +16,12 @@
 <h:body>
     <div class="black-box centered" id="shooting-gallery">
         <h1>Тир</h1>
-        <h:form prependId="false">
-            <div id="aim">
-                <h:graphicImage library="img" name="aim-bottom.svg" id="aim-bottom"/>
-                <canvas id="aim-top"/>
-            </div>
+        <div id="aim">
+            <h:graphicImage library="img" name="aim-bottom.svg" id="aim-bottom"/>
+            <canvas id="aim-top" hidden="hidden"/>
+        </div>
+        <h:form prependId="false" styleClass="centered">
+            <h:inputHidden value="#{timeZoneBean.offsetSeconds}" id="offsetInput" />
             <table>
                 <tr>
                     <td>X:</td>
@@ -28,39 +29,45 @@
                         <table>
                             <tr>
                                 <td>
-                                    <h:selectBooleanCheckbox styleClass="x" value="${xBean.selectedXMinus3}" id="x-3" />
+                                    <h:selectBooleanCheckbox styleClass="x" value="${xBean.selectedXMinus3}" id="x-3"/>
                                     <h:outputLabel for="x-3" value="-3"/>
                                 </td>
                                 <td>
-                                    <h:selectBooleanCheckbox styleClass="x" value="${xBean.selectedXMinus2}" id="x-2" />
+                                    <h:selectBooleanCheckbox styleClass="x" value="${xBean.selectedXMinus2}" id="x-2"/>
                                     <h:outputLabel for="x-2" value="-2"/>
                                 </td>
                                 <td>
-                                    <h:selectBooleanCheckbox styleClass="x" value="${xBean.selectedXMinus1}" id="x-1" />
+                                    <h:selectBooleanCheckbox styleClass="x" value="${xBean.selectedXMinus1}" id="x-1"/>
                                     <h:outputLabel for="x-1" value="-1"/>
                                 </td>
                                 <td>
-                                    <h:selectBooleanCheckbox styleClass="x" value="${xBean.selectedX0}" id="x0" name="x" />
+                                    <h:selectBooleanCheckbox styleClass="x" value="${xBean.selectedX0}" id="x0"
+                                                             name="x"/>
                                     <h:outputLabel for="x0" value="0"/>
                                 </td>
                                 <td>
-                                    <h:selectBooleanCheckbox styleClass="x" value="${xBean.selectedX1}" id="x1" name="x" />
+                                    <h:selectBooleanCheckbox styleClass="x" value="${xBean.selectedX1}" id="x1"
+                                                             name="x"/>
                                     <h:outputLabel for="x1" value="1"/>
                                 </td>
                                 <td>
-                                    <h:selectBooleanCheckbox styleClass="x" value="${xBean.selectedX2}" id="x2" name="x" />
+                                    <h:selectBooleanCheckbox styleClass="x" value="${xBean.selectedX2}" id="x2"
+                                                             name="x"/>
                                     <h:outputLabel for="x2" value="2"/>
                                 </td>
                                 <td>
-                                    <h:selectBooleanCheckbox styleClass="x" value="${xBean.selectedX3}" id="x3" name="x" />
+                                    <h:selectBooleanCheckbox styleClass="x" value="${xBean.selectedX3}" id="x3"
+                                                             name="x"/>
                                     <h:outputLabel for="x3" value="3"/>
                                 </td>
                                 <td>
-                                    <h:selectBooleanCheckbox styleClass="x" value="${xBean.selectedX4}" id="x4" name="x" />
+                                    <h:selectBooleanCheckbox styleClass="x" value="${xBean.selectedX4}" id="x4"
+                                                             name="x"/>
                                     <h:outputLabel for="x4" value="4"/>
                                 </td>
                                 <td>
-                                    <h:selectBooleanCheckbox styleClass="x" value="${xBean.selectedX5}" id="x5" name="x" />
+                                    <h:selectBooleanCheckbox styleClass="x" value="${xBean.selectedX5}" id="x5"
+                                                             name="x"/>
                                     <h:outputLabel for="x5" value="5"/>
                                 </td>
                             </tr>
@@ -70,26 +77,30 @@
                 <tr>
                     <td>Y:</td>
                     <td>
-                        <table><tr><td>
-                            <h:inputText id="y" a:placeholder="(-4..4)" value="#{yBean.y}"/>
-                        </td></tr></table>
+                        <table>
+                            <tr>
+                                <td>
+                                    <h:inputText id="y" a:placeholder="(-4..4)" value="#{yBean.y}"/>
+                                </td>
+                            </tr>
+                        </table>
                     </td>
                 </tr>
                 <tr>
                     <td>R:</td>
                     <td>
-                        <h:selectOneRadio value="#{rBean.rChoice}">
+                        <h:selectOneRadio value="#{rBean.rValues}">
                             <f:selectItems
-                                    value="#{rBean.rChoiceValues}"
+                                    value="#{rBean}"
                                     var="choice"
                                     itemValue="#{choice}"
-                                    itemLabel="#{choice.value}"
+                                    itemLabel="#{choice}"
                             />
                         </h:selectOneRadio>
                     </td>
                 </tr>
             </table>
-            <h:commandButton value="Отправить"/>
+            <h:commandButton value="Выстрелить"/>
         </h:form>
     </div>
 </h:body>

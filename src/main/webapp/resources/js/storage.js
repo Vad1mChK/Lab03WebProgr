@@ -1,3 +1,6 @@
+const X_MIN = -3
+const X_MAX = 5
+
 function getStoredXs() {
     return JSON.parse(localStorage.getItem('x')) || []
 }
@@ -34,21 +37,44 @@ function rChangeHandler(value) {
     setStoredR(value)
 }
 
+function arrayAddIfNotExists(arr, elem) {
+    if (!arr.includes(elem)) {
+        arr.push(elem)
+    }
+}
+
+function arrayRemoveIfExists(arr, elem) {
+    const index = arr.indexOf(elem);
+    if (index !== -1) {
+        arr.splice(index, 1)
+    }
+}
+
 document.addEventListener("DOMContentLoaded", () => {
     const xStored = getStoredXs()
     const yStored = getStoredY()
     const rStored = getStoredR()
 
-    const xElements = [...document.getElementsByName('x')]
+    const xElements = {}
+    for (let i = X_MIN; i <= X_MAX; ++i) {
+        const elem = document.getElementById(`x${i}`)
+        if (elem) {
+            xElements[i] = elem
+        }
+    }
     const yElement = document.getElementById('y')
     const rElements = [...document.getElementsByName('r')]
 
-    xElements.forEach((elem) => {
-        if (elem.value in xStored) elem.checked = true
+    xStored.forEach((x) => {
+        if (xElements[x]) {
+            xElements[x].checked = true
+        }
     })
+
     if (yStored) {
         yElement.value = yStored
     }
+
     for (let rElement of rElements) {
         if (rElement.value == rStored) {
             rElement.checked = true

@@ -1,124 +1,136 @@
 package org.vad1mchk.webprogr.lab03.beans;
 
-import org.vad1mchk.webprogr.lab03.entities.Shot;
-
 import javax.annotation.ManagedBean;
 import javax.enterprise.context.SessionScoped;
-import javax.faces.context.FacesContext;
-import javax.inject.Named;
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
+import java.time.ZonedDateTime;
+import java.util.Objects;
 
-@Named("shotBean")
 @SessionScoped
-@ManagedBean
+@ManagedBean("shotBean")
 public class ShotBean implements Serializable {
-    private static final String PERSISTENCE_UNIT = "StudsPU";
+    @Id
+    @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long id;
 
-    private Shot shot;
-    private List<Shot> storedShots;
+    @Column(name = "x")
+    private BigDecimal x;
 
-    private EntityManagerFactory managerFactory;
-    private EntityManager manager;
-    private EntityTransaction transaction;
+    @Column(name = "y")
+    private BigDecimal y;
 
-    public ShotBean() {
-        this.shot = new Shot();
-        this.storedShots = new ArrayList<>();
+    @Column(name = "r")
+    private BigDecimal r;
+
+    @Column(name = "hit")
+    private boolean hit;
+
+    @Column(name = "creation_date_time")
+    private ZonedDateTime creationDateTime;
+
+    @Column(name = "time_elapsed")
+    private long timeElapsed;
+
+    @Id
+    @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    public long getId() {
+        return id;
     }
 
-    private void connect() {
-        managerFactory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT);
-        manager = managerFactory.createEntityManager();
-        transaction = manager.getTransaction();
+    public void setId(long id) {
+        this.id = id;
     }
 
-    public void loadShots() {
-        try {
-            transaction.begin();
-            Query query = manager.createQuery("SELECT s FROM Shot s");
-            storedShots = query.getResultList();
-            transaction.commit();
-        } catch (RuntimeException e) {
-            if (transaction.isActive()) {
-                transaction.rollback();
-            }
-            throw e;
-        }
+    @Column(name = "x")
+    public BigDecimal getX() {
+        return x;
     }
 
-    public void addShot() {
-        try {
-            transaction.begin();
-            manager.persist(shot);
-            storedShots.add(shot);
-            shot = new Shot();
-            transaction.commit();
-        } catch (RuntimeException e) {
-            if (transaction.isActive()) {
-                transaction.rollback();
-            }
-            throw e;
-        }
+    public void setX(BigDecimal x) {
+        this.x = x;
     }
 
-    public void addShotWithParameters() {
-        if (shot == null) shot = new Shot();
-        try {
-            Map<String, String> parameters = FacesContext
-                    .getCurrentInstance()
-                    .getExternalContext()
-                    .getRequestParameterMap();
-            transaction.begin();
-            shot.setX(new BigDecimal(parameters.get("x")));
-            shot.setY(new BigDecimal(parameters.get("y")));
-            shot.setR(new BigDecimal(parameters.get("r")));
-            shot.updateHit();
-            manager.persist(shot);
-            storedShots.add(shot);
-            shot = new Shot();
-            transaction.commit();
-        } catch (RuntimeException e) {
-            if (transaction.isActive()) {
-                transaction.rollback();
-            }
-            throw e;
-        }
+    @Column(name = "y")
+    public BigDecimal getY() {
+        return y;
     }
 
-    public String clearShots() {
-        try {
-            transaction.begin();
-            Query query = manager.createQuery("DELETE FROM Shot");
-            query.executeUpdate();
-            storedShots.clear();
-            transaction.commit();
-        } catch (RuntimeException e) {
-            if (transaction.isActive()) {
-                transaction.rollback();
-            }
-            throw e;
-        }
-        return "redirect";
+    public void setY(BigDecimal y) {
+        this.y = y;
     }
 
-    public Shot getShot() {
-        return shot;
+    @Column(name = "r")
+    public BigDecimal getR() {
+        return r;
     }
 
-    public void setShot(Shot shot) {
-        this.shot = shot;
+    public void setR(BigDecimal r) {
+        this.r = r;
     }
 
-    public List<Shot> getStoredShots() {
-        return storedShots;
+    @Column(name = "hit")
+    public boolean isHit() {
+        return hit;
     }
 
-    public void setStoredShots(List<Shot> storedShots) {
-        this.storedShots = storedShots;
+    public void setHit(boolean hit) {
+        this.hit = hit;
+    }
+
+    @Column(name = "creation_date_time")
+    public ZonedDateTime getCreationDateTime() {
+        return creationDateTime;
+    }
+
+    public void setCreationDateTime(ZonedDateTime creationDateTime) {
+        this.creationDateTime = creationDateTime;
+    }
+
+    @Column(name = "time_elapsed")
+    public long getTimeElapsed() {
+        return timeElapsed;
+    }
+
+    public void setTimeElapsed(long timeElapsed) {
+        this.timeElapsed = timeElapsed;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof ShotBean)) return false;
+        ShotBean shotBean = (ShotBean) o;
+        return id == shotBean.id &&
+                hit == shotBean.hit &&
+                timeElapsed == shotBean.timeElapsed &&
+                Objects.equals(x, shotBean.x) &&
+                Objects.equals(y, shotBean.y) &&
+                Objects.equals(r, shotBean.r) &&
+                Objects.equals(creationDateTime, shotBean.creationDateTime);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, x, y, r, hit, creationDateTime, timeElapsed);
+    }
+
+    @Override
+    public String toString() {
+        return "ShotBean{" +
+                "id=" + id +
+                ", x=" + x +
+                ", y=" + y +
+                ", r=" + r +
+                ", hit=" + hit +
+                ", creationDateTime=" + creationDateTime +
+                ", timeElapsed=" + timeElapsed +
+                '}';
     }
 }

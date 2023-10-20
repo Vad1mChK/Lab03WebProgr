@@ -2,17 +2,16 @@ package org.vad1mchk.webprogr.lab03.beans;
 
 import javax.annotation.ManagedBean;
 import javax.enterprise.context.SessionScoped;
+import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
-@Named("xBean")
-@SessionScoped
+@ViewScoped
 @ManagedBean
+@Named("xBean")
 public class SelectXBean implements Serializable {
     private boolean selectedXMinus3;
     private boolean selectedXMinus2;
@@ -23,10 +22,6 @@ public class SelectXBean implements Serializable {
     private boolean selectedX3;
     private boolean selectedX4;
     private boolean selectedX5;
-
-    public SelectXBean() {
-
-    }
 
     public boolean isSelectedXMinus3() {
         return selectedXMinus3;
