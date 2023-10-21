@@ -2,17 +2,16 @@ package org.vad1mchk.webprogr.lab03.beans;
 
 import javax.annotation.ManagedBean;
 import javax.enterprise.context.SessionScoped;
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.ZonedDateTime;
 import java.util.Objects;
 
+@Entity
+@Table(name = "shot", schema = "s322864")
 @SessionScoped
-@ManagedBean("shotBean")
+@ManagedBean
 public class ShotBean implements Serializable {
     @Id
     @Column(name = "id")
@@ -37,9 +36,7 @@ public class ShotBean implements Serializable {
     @Column(name = "time_elapsed")
     private long timeElapsed;
 
-    @Id
     @Column(name = "id")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     public long getId() {
         return id;
     }
