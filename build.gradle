@@ -26,8 +26,8 @@ dependencies {
     implementation('javax.faces:jsf-api:2.1')
     implementation('javax.persistence:javax.persistence-api:2.2')
     implementation('javax.enterprise:cdi-api:2.0')
-    implementation('org.icefaces:icefaces:4.3.0')
-    implementation('org.icefaces:icefaces-ace:4.3.0')
+//    implementation('org.icefaces:icefaces:4.3.0')
+//    implementation('org.icefaces:icefaces-ace:4.3.0')
     implementation('org.eclipse.persistence:eclipselink:2.7.12')
 
     testImplementation("org.junit.jupiter:junit-jupiter-api:${junitVersion}")

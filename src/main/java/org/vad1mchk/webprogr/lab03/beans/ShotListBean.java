@@ -8,6 +8,7 @@ import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -43,6 +44,4 @@ public class ShotListBean implements Serializable {
             lastShot = null;
         }
     }
-
-
 }

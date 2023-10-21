@@ -178,6 +178,7 @@ table, th, td {
 }
 
 #aim {
+    position: relative;
     width: 400px;
     height: 400px;
     text-align: center;
@@ -187,9 +188,7 @@ table, th, td {
 }
 
 #aim * {
-    position: relative;
-    max-width: 400px;
-    max-height: 400px;
+    position: absolute;
     left: 0;
     top: 0;
 }

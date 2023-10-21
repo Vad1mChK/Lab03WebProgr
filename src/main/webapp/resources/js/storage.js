@@ -65,42 +65,42 @@ document.addEventListener("DOMContentLoaded", () => {
     const yElement = document.getElementById('y')
     const rElements = [...document.getElementsByName('r')]
 
-    xStored.forEach((x) => {
-        if (xElements[x]) {
-            xElements[x].checked = true
-        }
-    })
-
-    if (yStored) {
-        yElement.value = yStored
-    }
-
-    for (let rElement of rElements) {
-        if (rElement.value == rStored) {
-            rElement.checked = true
-            break
-        }
-    }
-
-    xElements.forEach((elem) => {
-        elem.addEventListener("change", () => {
-            const checkedXs = xElements.filter(el => el.checked).map(el => el.value)
-            console.log(`X changed to: ${checkedXs}`)
-            xChangeHandler(checkedXs)
-        })
-    })
-
-    yElement.addEventListener("change", () => {
-        const newY = yElement.value
-        console.log(`Y changed to: ${newY}`)
-        yChangeHandler(newY)
-    })
-
-    rElements.forEach((elem) => {
-        elem.addEventListener("change", () => {
-            const newR = elem.value
-            console.log(`R changed to: ${newR}`)
-            rChangeHandler(newR)
-        })
-    })
+    // xStored.forEach((x) => {
+    //     if (xElements[x]) {
+    //         xElements[x].checked = true
+    //     }
+    // })
+    //
+    // if (yStored) {
+    //     yElement.value = yStored
+    // }
+    //
+    // for (let rElement of rElements) {
+    //     if (rElement.value == rStored) {
+    //         rElement.checked = true
+    //         break
+    //     }
+    // }
+    //
+    // xElements.values().forEach((elem) => {
+    //     elem.addEventListener("change", () => {
+    //         const checkedXs = xElements.filter(el => el.checked).map(el => el.value)
+    //         console.log(`X changed to: ${checkedXs}`)
+    //         xChangeHandler(checkedXs)
+    //     })
+    // })
+    //
+    // yElement.addEventListener("change", () => {
+    //     const newY = yElement.value
+    //     console.log(`Y changed to: ${newY}`)
+    //     yChangeHandler(newY)
+    // })
+    //
+    // rElements.forEach((elem) => {
+    //     elem.addEventListener("change", () => {
+    //         const newR = elem.value
+    //         console.log(`R changed to: ${newR}`)
+    //         rChangeHandler(newR)
+    //     })
+    // })
 })

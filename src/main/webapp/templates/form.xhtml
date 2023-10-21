@@ -18,7 +18,7 @@
         <h1>Тир</h1>
         <div id="aim">
             <h:graphicImage library="img" name="aim-bottom.svg" id="aim-bottom"/>
-            <canvas id="aim-top" hidden="hidden"/>
+            <canvas id="aim-top" width="400" height="400"/>
         </div>
         <h:form prependId="false" styleClass="centered">
             <h:inputHidden value="#{timeZoneBean.offsetSeconds}" id="offsetInput" />
@@ -89,13 +89,15 @@
                 <tr>
                     <td>R:</td>
                     <td>
-                        <h:selectOneRadio value="#{rBean.rValues}">
+                        <h:selectOneRadio value="#{rBean.rValues}" validator="#{rBean.validateR}">
                             <f:selectItems
-                                    value="#{rBean}"
+                                    value="#{rBean.rValues}"
                                     var="choice"
                                     itemValue="#{choice}"
                                     itemLabel="#{choice}"
                             />
+                            <f:validateRequired/>
+                            <f:ajax execute="@this" render="@form"/>
                         </h:selectOneRadio>
                     </td>
                 </tr>
