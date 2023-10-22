@@ -41,6 +41,7 @@ public class ShotListBean implements Serializable {
         previousShots = new LinkedList<>();
         shotDao = new ShotDaoImplementation();
         loadShots();
+        System.out.println(previousShots);
     }
 
     public void loadShots() {
