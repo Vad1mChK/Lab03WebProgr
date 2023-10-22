@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<ui:composition template="../templates/error.xhtml">
+    <ui:define name="head">
+        <title>Редд Уайт говорит...</title>
+    </ui:define>
+    <ui:define name="error-code">402 Payment Required</ui:define>
+    <ui:define name="character-image">
+        <h:graphicImage library="img" name="error-pages/402.webp"/>
+    </ui:define>
+    <ui:define name="character-name">Уайт</ui:define>
+    <ui:define name="character-speech">
+        А ты в курсе, что каждый мой новый фикс для лабы стоит <b>$2&nbsp;147&nbsp;483&nbsp;647</b>?
+    </ui:define>
+</ui:composition>
+</html>

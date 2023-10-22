@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<ui:composition template="../templates/error.xhtml">
+    <ui:define name="head">
+        <title>Франциска фон Карма говорит...</title>
+    </ui:define>
+    <ui:define name="error-code">405 Method Not Allowed</ui:define>
+    <ui:define name="character-image">
+        <h:graphicImage library="img" name="error-pages/405.webp"/>
+    </ui:define>
+    <ui:define name="character-name">фон Карма</ui:define>
+    <ui:define name="character-speech">
+        Следи за своими методами (GET, POST)! Я не позволю дурацким дуракам вести себя по-дурацки на моём сайте!
+    </ui:define>
+</ui:composition>
+</html>

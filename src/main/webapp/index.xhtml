@@ -4,14 +4,14 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
 >
-<ui:composition template="templates/master.xhtml">
+<ui:composition template="/WEB-INF/templates/master.xhtml">
     <ui:define name="head">
         <h:outputScript library="js" name="clock.js"/>
     </ui:define>
     <ui:define name="main">
         <div class="black-box">
             <h1 id="clock">Текущее время</h1>
-            <p class="centered"><h:link styleClass="to-main-link" outcome="to-main">Основная страница</h:link></p>
+            <p class="centered"><h:link styleClass="to-main-link" outcome="to-main">На основную страницу</h:link></p>
         </div>
     </ui:define>
 </ui:composition>

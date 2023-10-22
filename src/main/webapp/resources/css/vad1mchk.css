@@ -106,8 +106,7 @@ h1 {
     font-size: 32px;
 }
 
-.to-main-link {
-    font-size: 32px;
+.to-index-link, .to-main-link {
     animation-duration: 1s;
     animation-iteration-count: infinite;
     animation-direction: alternate;
@@ -116,7 +115,11 @@ h1 {
     animation-name: flash;
 }
 
-.to-main-link:hover, .to-main-link:active {
+.to-main-link {
+    font-size: 32px;
+}
+
+.to-index-link:hover, .to-index-link:active, .to-main-link:hover, .to-main-link:active {
     filter: hue-rotate(-90deg);
 }
 

@@ -25,7 +25,7 @@ h1, h2 {
 }
 
 h1 {
-    font-size: 96px;
+    font-size: 80px;
     line-height: 0.5;
 }
 
@@ -33,20 +33,38 @@ h2 {
     font-size: 32px;
 }
 
-.character-container {
+#character-container {
+    position: relative;
     color: #f4f4f4;
-    padding: 32px;
     border: 2px solid #f4f4f4;
     border-radius: 16px;
-    width: 50%;
-    font-size: 24px;
+    width: 1000px;
+    height: 750px;
 }
 
-.character-name, .character-speech {
+#character-sprite {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: auto;
+    z-index: 0;
+}
+
+#character-textbox {
+    position: absolute;
+    bottom: 32px;
+    left: 32px;
+    right: 32px;
+    z-index: 1;
+}
+
+#character-name, #character-speech {
     border: 2px solid #f4f4f4;
 }
 
-.character-name {
+#character-name {
+    font-size: 18px;
     padding: 16px;
     background-color: #2653a780;
     width: fit-content;
@@ -55,13 +73,47 @@ h2 {
     border-bottom: none;
 }
 
-.character-speech {
+#character-speech {
+    font-size: 24px;
     padding: 16px;
     background-color: #10101080;
     border-radius: 0 16px 16px 16px;
 }
 
-#character-sprite {
-    width: 100%;
-    height: auto;
+a {
+    transition-duration: 0.5s;
+    transition-timing-function: ease-in-out;
+}
+
+a:link, a:visited {
+    text-decoration: none;
+    color: rgb(143, 191, 233);
+}
+
+a:hover, a:active {
+    color: rgb(255, 102, 102);
+}
+
+.to-index-link {
+    animation-duration: 1s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+    transition-duration: 0.2s;
+    transition-timing-function: ease-in-out;
+    animation-name: flash;
+}
+
+.to-index-link:hover, .to-index-link:active {
+    filter: hue-rotate(-90deg);
+}
+
+@keyframes flash {
+    0% {
+        color: #94bc0e;
+        text-shadow: 0 0 0 #94bc0e;
+    }
+    100% {
+        color: #f4f4f4;
+        text-shadow: 0 0 32px #94bc0e;
+    }
 }

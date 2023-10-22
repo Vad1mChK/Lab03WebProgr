@@ -17,22 +17,22 @@
 <h:head>
     <h:outputStylesheet library="css" name="error.css"/>
     <link rel="icon" href="${resource['img/favicon_err.ico']}"/>
-    <title>Ошибка</title>
     <ui:insert name="head">
-        <!-- Script imports, custom titles and styles go here -->
+        <title>Ошибка</title>
     </ui:insert>
 </h:head>
 <h:body>
-    <a href="../index.xhtml">Back to Home</a>
-    <h1><ui:insert name="error-code">200</ui:insert></h1>
-    <h2><ui:insert name="error-name">OK</ui:insert></h2>
-    <div class="character-container">
+    <h:link value="Назад на стартовую" styleClass="to-index-link" outcome="/index.html"/>
+    <h1><ui:insert name="error-code">200 OK</ui:insert></h1>
+    <div id="character-container">
         <ui:insert name="character-image"/>
-        <div class="character-name" id="character-name">
-            <ui:insert name="character-name">Phoenix</ui:insert>
-        </div>
-        <div class="character-speech" id="character-speech">
-            <ui:insert name="character-name">ok</ui:insert>
+        <div id="character-textbox">
+            <div id="character-name">
+                <ui:insert name="character-name">Phoenix</ui:insert>
+            </div>
+            <div id="character-speech">
+                <ui:insert name="character-speech">ok</ui:insert>
+            </div>
         </div>
     </div>
 </h:body>
