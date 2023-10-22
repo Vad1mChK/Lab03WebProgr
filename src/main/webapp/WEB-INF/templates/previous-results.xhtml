@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Created by IntelliJ IDEA.
+  User: vadim
+  Date: 22.10.2023
+  Time: 18:14
+-->
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+>
+
+<h:body>
+    <div class="black-box">
+        <h1>Результаты предыдущих выстрелов</h1>
+        <h:dataTable id="previous-shots-table" value="#{shotListBean.previousShots}" var="shot">
+            <h:column>
+                <f:facet name="header">ID</f:facet>
+                #{shot.id}
+            </h:column>
+            <h:column>
+                <f:facet name="header">X</f:facet>
+                #{shot.x}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Y</f:facet>
+                #{shot.y}
+            </h:column>
+            <h:column>
+                <f:facet name="header">R</f:facet>
+                #{shot.r}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Попадание</f:facet>
+                #{shot.hit ? "да" : "нет"}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Дата и время создания</f:facet>
+                <h:outputText converter="zonedDateTimeConverter" value="#{shot.creationDateTime}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Время выполнения (нс)</f:facet>
+                #{shot.timeElapsed}
+            </h:column>
+        </h:dataTable>
+    </div>
+</h:body>
+</html>

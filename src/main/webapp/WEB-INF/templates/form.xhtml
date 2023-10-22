@@ -11,17 +11,27 @@
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
 >
 
 <h:body>
+    <f:view xmlns="http://java.sun.com/jsf/core" xmlns:f="http://java.sun.com/jsf/core">
+        <f:event type="preRenderView" listener="#{shotListBean.loadShots()}" />
+    </f:view>
     <div class="black-box centered" id="shooting-gallery">
         <h1>Тир</h1>
         <div id="aim">
             <h:graphicImage library="img" name="aim-bottom.svg" id="aim-bottom"/>
             <canvas id="aim-top" width="400" height="400"/>
         </div>
-        <h:form prependId="false" styleClass="centered">
+        <h:form id="graph-shooting-gallery" prependId="false">
+            <h:inputHidden id="graph-x" value="#{graphBean.x}"/>
+            <h:inputHidden id="graph-y" value="#{graphBean.y}"/>
+            <h:commandButton id="graph-submit" style="display: none;"
+                             action="#{shotListBean.addShot(graphBean.x, graphBean.y, rBean.r)}">
+                <f:ajax execute="@form" render="@form"/>
+            </h:commandButton>
+        </h:form>
+        <h:form id="element-shooting-gallery" prependId="false" styleClass="centered">
             <h:inputHidden value="#{zoneBean.offsetSeconds}" id="offsetInput" />
             <table>
                 <tr>
@@ -81,7 +91,9 @@
                         <table>
                             <tr>
                                 <td>
-                                    <h:inputText id="y" a:placeholder="(-4..4)" value="#{yBean.y}"/>
+                                    <h:inputText id="y" a:placeholder="(-4..4)" value="#{yBean.y}">
+                                            <f:validateRequired/>
+                                    </h:inputText>
                                 </td>
                             </tr>
                         </table>
@@ -103,7 +115,20 @@
                     </td>
                 </tr>
             </table>
-            <h:commandButton value="Выстрелить"/>
+            <table>
+                <tr style="text-align: center;">
+                    <td>
+                        <h:commandButton id="submit-button" value="Выстрелить">
+                            <f:ajax execute="@form" listener="#{shotListBean.addShots()}" render="@form previous-shots-table"/>
+                        </h:commandButton>
+                    </td>
+                    <td>
+                        <h:commandButton id="clear-button" value="Очистить выстрелы">
+                            <f:ajax execute="@form" listener="#{shotListBean.clearShots()}"/>
+                        </h:commandButton>
+                    </td>
+                </tr>
+            </table>
         </h:form>
     </div>
 </h:body>

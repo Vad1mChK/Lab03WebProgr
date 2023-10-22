@@ -16,7 +16,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 @SessionScoped
-@ManagedBean
+@Named
 public class ShotListBean implements Serializable {
     @Inject
     private SelectXBean xBean;
@@ -32,6 +32,7 @@ public class ShotListBean implements Serializable {
 
     private ShotDao shotDao;
 
+    @Named("previousShots")
     private List<ShotBean> previousShots;
     private ShotBean lastShot;
 
@@ -43,7 +44,10 @@ public class ShotListBean implements Serializable {
     }
 
     public void loadShots() {
-        previousShots = shotDao.getAllShots();
+        List<ShotBean> shotsToLoad = shotDao.getAllShots();
+        if (previousShots == null) {
+            return;
+        }
         if (!previousShots.isEmpty()) {
             lastShot = previousShots.get(previousShots.size() - 1);
         } else {
@@ -51,43 +55,48 @@ public class ShotListBean implements Serializable {
         }
     }
 
-    public void addShots() {
-        List<ShotBean> shotsToSend = new ArrayList<>();
-
-        BigDecimal y = yBean.getY();
-        BigDecimal r = rBean.getR();
+    public void addShot(BigDecimal x, BigDecimal y, BigDecimal r) {
         ZoneOffset zone = zoneBean.getZone();
 
+        if (x == null || y == null || r == null || zone == null) {
+            return;
+        }
+
+        long startTime = System.nanoTime();
+
+        ShotBean shot = new ShotBean();
+
+        boolean hit = ShotHitChecker.check(x, y, r);
+        ZonedDateTime creationDateTime = ZonedDateTime.now(zone);
+
+        shot.setX(x);
+        shot.setY(y);
+        shot.setR(r);
+
+        shot.setHit(hit);
+        shot.setCreationDateTime(creationDateTime);
+
+        long endTime = System.nanoTime();
+        shot.setTimeElapsed(endTime - startTime);
+
+        ShotBean addedShot = shotDao.insertShot(shot);
+        if (addedShot != null) {
+            previousShots.add(addedShot);
+            lastShot = addedShot;
+        }
+    }
+
+    public void addShots() {
+        BigDecimal y = yBean.getY();
+        BigDecimal r = rBean.getR();
         List<BigDecimal> xs = xBean.getAllSelectedValues();
-        if (xs == null || xs.isEmpty() || y == null || r == null || zone == null) {
+
+        if (xs == null || xs.isEmpty()) {
             return;
         }
 
         for (BigDecimal x : xs) {
-            if (x == null) continue;
-
-            long startTime = System.nanoTime();
-
-            ShotBean shot = new ShotBean();
-
-            boolean hit = ShotHitChecker.check(x, y, r);
-            ZonedDateTime creationDateTime = ZonedDateTime.now(zone);
-
-            shot.setX(x);
-            shot.setY(y);
-            shot.setR(r);
-
-            shot.setHit(hit);
-            shot.setCreationDateTime(creationDateTime);
-
-            long endTime = System.nanoTime();
-            shot.setTimeElapsed(endTime - startTime);
-
-            ShotBean addedShot = shotDao.insertShot(shot);
-            if (addedShot != null) {
-                shotsToSend.add(addedShot);
-                lastShot = addedShot;
-            }
+            addShot(x, y, r);
         }
     }
 

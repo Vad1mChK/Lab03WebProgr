@@ -73,9 +73,13 @@ function redrawCanvas(canvas, r, shots) {
 function getShotPosition(canvas, r, event) {
     const drawnX = event.offsetX
     const drawnY = event.offsetY
-    const result = { x: drawnToRealX(drawnX, r), y: drawnToRealY(drawnY, r) }
-    console.log(result)
-    return result
+    return {x: drawnToRealX(drawnX, r), y: drawnToRealY(drawnY, r)}
+}
+
+function sendShotFromCanvas(x, y) {
+    document.getElementById("graph-x").value = x
+    document.getElementById("graph-y").value = y
+    document.getElementById("graph-submit").click()
 }
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -83,6 +87,11 @@ document.addEventListener("DOMContentLoaded", () => {
     setCanvas(canvas)
     cleanCanvas(canvas)
     canvas.onclick = (e) => {
-        getShotPosition(canvas, 5, e)
+        const realCoords = getShotPosition(canvas, 5, e)
+        if (!isFinite(realCoords.x) || !isFinite(realCoords.y)) {
+            return
+        }
+        console.log(realCoords)
+        sendShotFromCanvas(realCoords.x, realCoords.y)
     }
 })

@@ -9,7 +9,7 @@ import java.time.ZonedDateTime;
 import java.util.Objects;
 
 @Entity
-@Table(name = "shot", schema = "s322864")
+@Table(name = "shot")
 @SessionScoped
 @ManagedBean
 public class ShotBean implements Serializable {
