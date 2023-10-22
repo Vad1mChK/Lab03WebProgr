@@ -7,8 +7,7 @@ import java.io.Serializable;
 import java.time.ZoneOffset;
 
 @ViewScoped
-@ManagedBean
-@Named("timeZoneBean")
+@Named("zoneBean")
 public class TimeZoneBean implements Serializable {
     private int offsetSeconds;
     private ZoneOffset zone;

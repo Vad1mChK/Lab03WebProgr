@@ -1,0 +1,67 @@
+@font-face {
+    font-family: AceAttorney;
+    src: url(#{resource[ 'fonts/FOT-UDMarugo-Regular.ttf' ]});
+    font-weight: normal;
+}
+
+@font-face {
+    font-family: AceAttorney;
+    src: url(#{resource[ 'fonts/FOT-UDMarugo-Bold.otf' ]});
+    font-weight: bold;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #4d5156;
+    color: #f4f4f4;
+    font-family: AceAttorney, sans-serif;
+}
+
+h1, h2 {
+    color: #ff6666;
+    text-align: center;
+}
+
+h1 {
+    font-size: 96px;
+    line-height: 0.5;
+}
+
+h2 {
+    font-size: 32px;
+}
+
+.character-container {
+    color: #f4f4f4;
+    padding: 32px;
+    border: 2px solid #f4f4f4;
+    border-radius: 16px;
+    width: 50%;
+    font-size: 24px;
+}
+
+.character-name, .character-speech {
+    border: 2px solid #f4f4f4;
+}
+
+.character-name {
+    padding: 16px;
+    background-color: #2653a780;
+    width: fit-content;
+    height: fit-content;
+    border-radius: 16px 16px 0 0;
+    border-bottom: none;
+}
+
+.character-speech {
+    padding: 16px;
+    background-color: #10101080;
+    border-radius: 0 16px 16px 16px;
+}
+
+#character-sprite {
+    width: 100%;
+    height: auto;
+}

@@ -65,16 +65,16 @@ document.addEventListener("DOMContentLoaded", () => {
     const yElement = document.getElementById('y')
     const rElements = [...document.getElementsByName('r')]
 
-    // xStored.forEach((x) => {
-    //     if (xElements[x]) {
-    //         xElements[x].checked = true
-    //     }
-    // })
-    //
-    // if (yStored) {
-    //     yElement.value = yStored
-    // }
-    //
+    xStored.forEach((x) => {
+        if (xElements[x]) {
+            xElements[x].checked = true
+        }
+    })
+
+    if (yStored) {
+        yElement.value = yStored
+    }
+
     // for (let rElement of rElements) {
     //     if (rElement.value == rStored) {
     //         rElement.checked = true

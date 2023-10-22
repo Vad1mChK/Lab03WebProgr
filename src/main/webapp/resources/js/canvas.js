@@ -34,7 +34,7 @@ function drawnToRealX(x, r) {
 }
 
 function drawnToRealY(y, r) {
-    return (y - HEIGHT / 2) * r / RADIUS
+    return - (y - HEIGHT / 2) * r / RADIUS
 }
 
 function drawShot(canvas, r, shot) {
@@ -71,14 +71,18 @@ function redrawCanvas(canvas, r, shots) {
 }
 
 function getShotPosition(canvas, r, event) {
-    console.log(`${event.offsetX} ${event.offsetY}`)
+    const drawnX = event.offsetX
+    const drawnY = event.offsetY
+    const result = { x: drawnToRealX(drawnX, r), y: drawnToRealY(drawnY, r) }
+    console.log(result)
+    return result
 }
 
 document.addEventListener("DOMContentLoaded", () => {
     canvas = document.getElementById("aim-top")
     setCanvas(canvas)
     cleanCanvas(canvas)
-    canvas.onClick = (e) => {
+    canvas.onclick = (e) => {
         getShotPosition(canvas, 5, e)
     }
 })

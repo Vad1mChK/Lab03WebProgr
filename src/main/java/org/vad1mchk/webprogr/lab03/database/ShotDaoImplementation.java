@@ -42,11 +42,12 @@ public class ShotDaoImplementation implements ShotDao {
 
     @Override
     public ShotBean insertShot(ShotBean shot) {
-        ShotBean newShot = null;
+        ShotBean newShot;
         try {
             transaction.begin();
             manager.persist(shot);
-            // Some code for querying a new shot with a generated ID goes here
+            manager.flush();
+            newShot = shot;
             transaction.commit();
         } catch (RuntimeException e) {
             if (transaction.isActive()) {

@@ -10,7 +10,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 @ViewScoped
-@ManagedBean
 @Named("xBean")
 public class SelectXBean implements Serializable {
     private boolean selectedXMinus3;

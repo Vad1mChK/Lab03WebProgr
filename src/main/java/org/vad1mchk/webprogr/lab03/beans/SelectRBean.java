@@ -15,7 +15,6 @@ import java.util.Collections;
 import java.util.List;
 
 @ViewScoped
-@ManagedBean
 @Named("rBean")
 public class SelectRBean implements Serializable {
     private static final BigDecimal R_MIN = BigDecimal.ONE;
@@ -23,7 +22,7 @@ public class SelectRBean implements Serializable {
 
     private List<BigDecimal> rValues;
 
-    private BigDecimal value;
+    private BigDecimal r;
 
     public SelectRBean() {
         super();
@@ -36,7 +35,7 @@ public class SelectRBean implements Serializable {
 
     public void validateR(FacesContext context, UIComponent component, Object o) {
         if (o == null) {
-            value = null;
+            r = null;
             FacesContext.getCurrentInstance().getPartialViewContext().getEvalScripts()
                     .add("cleanCanvas(getCanvas());");
             FacesMessage message = new FacesMessage("Необходимо выбрать значение R.");
@@ -46,5 +45,13 @@ public class SelectRBean implements Serializable {
 
     public List<BigDecimal> getrValues() {
         return rValues;
+    }
+
+    public BigDecimal getR() {
+        return r;
+    }
+
+    public void setR(BigDecimal r) {
+        this.r = r;
     }
 }
