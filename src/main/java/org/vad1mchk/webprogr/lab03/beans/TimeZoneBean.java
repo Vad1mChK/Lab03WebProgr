@@ -1,6 +1,5 @@
 package org.vad1mchk.webprogr.lab03.beans;
 
-import javax.annotation.ManagedBean;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 import java.io.Serializable;

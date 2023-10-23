@@ -3,7 +3,6 @@ package org.vad1mchk.webprogr.lab03.database;
 import org.vad1mchk.webprogr.lab03.beans.ShotBean;
 
 import javax.persistence.*;
-import java.math.BigDecimal;
 import java.util.List;
 
 public class ShotDaoImplementation implements ShotDao {

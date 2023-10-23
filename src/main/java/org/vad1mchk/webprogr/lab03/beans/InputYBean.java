@@ -1,6 +1,5 @@
 package org.vad1mchk.webprogr.lab03.beans;
 
-import javax.annotation.ManagedBean;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.component.UIComponent;
@@ -11,7 +10,7 @@ import javax.inject.Named;
 import java.io.Serializable;
 import java.math.BigDecimal;
 
-@ViewScoped
+@SessionScoped
 @Named("yBean")
 public class InputYBean implements Serializable {
     private static final BigDecimal Y_MIN = new BigDecimal(-4);
@@ -26,7 +25,7 @@ public class InputYBean implements Serializable {
         this.y = y;
     }
 
-    private void validateY(FacesContext context, UIComponent component, Object o) {
+    public void validateY(FacesContext context, UIComponent component, Object o) {
         if (o == null) {
             y = null;
             FacesMessage message = new FacesMessage("Необходимо выбрать значение Y.");

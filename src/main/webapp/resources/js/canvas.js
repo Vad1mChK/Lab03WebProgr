@@ -17,7 +17,7 @@ function setCanvas(newCanvas) {
 }
 
 function cleanCanvas(canvas) {
-    const ctx = canvas.getContext('2d', { alpha: true })
+    const ctx = canvas.getContext('2d', {alpha: true})
     ctx.clearRect(0, 0, 400, 400);
 }
 
@@ -34,11 +34,11 @@ function drawnToRealX(x, r) {
 }
 
 function drawnToRealY(y, r) {
-    return - (y - HEIGHT / 2) * r / RADIUS
+    return -(y - HEIGHT / 2) * r / RADIUS
 }
 
 function drawShot(canvas, r, shot) {
-    const ctx = canvas.getContext('2d', { alpha: true })
+    const ctx = canvas.getContext('2d', {alpha: true})
     if (!shot) return
     if (shot.x == null || shot.y == null || shot.r == null || shot.hit == null) return
 
@@ -49,7 +49,7 @@ function drawShot(canvas, r, shot) {
 
     const xDrawn = realToDrawnX(x, r)
     const yDrawn = realToDrawnY(y, r)
-    if(!isFinite(xDrawn) || !isFinite(yDrawn)) {
+    if (!isFinite(xDrawn) || !isFinite(yDrawn)) {
         return
     }
 
@@ -63,7 +63,7 @@ function drawShot(canvas, r, shot) {
 }
 
 function redrawCanvas(canvas, r, shots) {
-    const ctx = canvas.getContext('2d', { alpha: true })
+    const ctx = canvas.getContext('2d', {alpha: true})
     cleanCanvas(canvas)
     shots.forEach((shot) => {
         drawShot(canvas, r, shot)

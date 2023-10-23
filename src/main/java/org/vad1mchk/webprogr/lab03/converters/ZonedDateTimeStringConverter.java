@@ -12,14 +12,13 @@ import java.time.ZoneOffset;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Locale;
-import java.util.logging.Logger;
 
 @FacesConverter(forClass = ZonedDateTime.class, value = "zonedDateTimeConverter", managed = true)
 public class ZonedDateTimeStringConverter extends DateTimeConverter {
 
     public static final Locale RUSSIAN_LOCALE = new Locale("ru", "RU");
 
-    @ManagedProperty(value="#{timeZoneBean}")
+    @ManagedProperty(value = "#{timeZoneBean}")
     private TimeZoneBean zoneBean;
 
     public ZonedDateTimeStringConverter() {

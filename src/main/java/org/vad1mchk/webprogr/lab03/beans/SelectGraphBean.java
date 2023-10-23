@@ -19,12 +19,12 @@ public class SelectGraphBean implements Serializable {
         return x;
     }
 
-    public BigDecimal getY() {
-        return y;
-    }
-
     public void setX(BigDecimal x) {
         this.x = x;
+    }
+
+    public BigDecimal getY() {
+        return y;
     }
 
     public void setY(BigDecimal y) {

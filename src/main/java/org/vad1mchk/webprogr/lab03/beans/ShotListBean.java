@@ -3,7 +3,6 @@ package org.vad1mchk.webprogr.lab03.beans;
 import org.vad1mchk.webprogr.lab03.database.ShotDao;
 import org.vad1mchk.webprogr.lab03.database.ShotDaoImplementation;
 
-import javax.annotation.ManagedBean;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -11,7 +10,6 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.ZoneOffset;
 import java.time.ZonedDateTime;
-import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 

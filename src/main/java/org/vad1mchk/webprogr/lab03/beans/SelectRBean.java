@@ -1,20 +1,19 @@
 package org.vad1mchk.webprogr.lab03.beans;
 
-import javax.annotation.ManagedBean;
+import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.validator.ValidatorException;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
-import javax.validation.ValidationException;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-@ViewScoped
+@SessionScoped
 @Named("rBean")
 public class SelectRBean implements Serializable {
     private static final BigDecimal R_MIN = BigDecimal.ONE;

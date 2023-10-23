@@ -14,7 +14,7 @@
 >
 
 <h:body>
-    <f:event type="preRenderView" listener="#{shotListBean.loadShots()}" />
+    <f:event type="preRenderView" listener="#{shotListBean.loadShots()}"/>
     <div class="black-box centered" id="shooting-gallery">
         <h1>Тир</h1>
         <div id="aim">
@@ -30,7 +30,7 @@
             </h:commandButton>
         </h:form>
         <h:form id="element-shooting-gallery" prependId="false" styleClass="centered">
-            <h:inputHidden value="#{zoneBean.offsetSeconds}" id="zone" />
+            <h:inputHidden value="#{zoneBean.offsetSeconds}" id="zone"/>
             <table>
                 <tr>
                     <td>X:</td>
@@ -38,66 +38,59 @@
                         <table>
                             <tr>
                                 <td>
-                                    <h:selectBooleanCheckbox styleClass="x" value="#{xBean.selectedXMinus3}" id="x-3"
-                                        validator="#{xBean.validateX}">
-                                        <f:ajax listener="#{xBean.update()}"/>
+                                    <h:inputHidden id="x-validate" value="#{xBean.allSelectedValues}"
+                                                   validator="#{xBean.validateX}"/>
+                                    <h:selectBooleanCheckbox styleClass="x" value="#{xBean.xs[bdUtilBean.valueOf(-3)]}" id="x-3">
+                                        <f:ajax listener="#{xBean.update()}" render="x-3"/>
                                         <f:validateRequired/>
                                     </h:selectBooleanCheckbox>
                                     <h:outputLabel for="x-3" value="-3"/>
                                 </td>
                                 <td>
-                                    <h:selectBooleanCheckbox styleClass="x" value="#{xBean.selectedXMinus2}" id="x-2"
-                                        validator="#{xBean.validateX}">
-                                        <f:ajax listener="#{xBean.update()}"/>
+                                    <h:selectBooleanCheckbox styleClass="x" value="#{xBean.xs[bdUtilBean.valueOf(-2)]}" id="x-2">
+                                        <f:ajax listener="#{xBean.update()}" render="x-2"/>
                                     </h:selectBooleanCheckbox>
                                     <h:outputLabel for="x-2" value="-2"/>
                                 </td>
                                 <td>
-                                    <h:selectBooleanCheckbox styleClass="x" value="#{xBean.selectedXMinus1}" id="x-1"
-                                        validator="#{xBean.validateX}">
-                                        <f:ajax listener="#{xBean.update()}"/>
+                                    <h:selectBooleanCheckbox styleClass="x" value="#{xBean.xs[bdUtilBean.valueOf(-1)]}" id="x-1">
+                                        <f:ajax listener="#{xBean.update()}" render="x-1"/>
                                     </h:selectBooleanCheckbox>
                                     <h:outputLabel for="x-1" value="-1"/>
                                 </td>
                                 <td>
-                                    <h:selectBooleanCheckbox styleClass="x" value="#{xBean.selectedX0}" id="x0"
-                                        validator="#{xBean.validateX}">
-                                        <f:ajax listener="#{xBean.update()}"/>
+                                    <h:selectBooleanCheckbox styleClass="x" value="#{xBean.xs[bdUtilBean.valueOf(0)]}" id="x0">
+                                        <f:ajax listener="#{xBean.update()}" render="x0"/>
                                     </h:selectBooleanCheckbox>
                                     <h:outputLabel for="x0" value="0"/>
                                 </td>
                                 <td>
-                                    <h:selectBooleanCheckbox styleClass="x" value="#{xBean.selectedX1}" id="x1"
-                                        validator="#{xBean.validateX}">
-                                        <f:ajax listener="#{xBean.update()}"/>
+                                    <h:selectBooleanCheckbox styleClass="x" value="#{xBean.xs[bdUtilBean.valueOf(1)]}" id="x1">
+                                        <f:ajax listener="#{xBean.update()}" render="x1"/>
                                     </h:selectBooleanCheckbox>
                                     <h:outputLabel for="x1" value="1"/>
                                 </td>
                                 <td>
-                                    <h:selectBooleanCheckbox styleClass="x" value="#{xBean.selectedX2}" id="x2"
-                                        validator="#{xBean.validateX}">
-                                        <f:ajax listener="#{xBean.update()}"/>
+                                    <h:selectBooleanCheckbox styleClass="x" value="#{xBean.xs[bdUtilBean.valueOf(2)]}" id="x2">
+                                        <f:ajax listener="#{xBean.update()}" render="x2"/>
                                     </h:selectBooleanCheckbox>
                                     <h:outputLabel for="x2" value="2"/>
                                 </td>
                                 <td>
-                                    <h:selectBooleanCheckbox styleClass="x" value="#{xBean.selectedX3}" id="x3"
-                                        validator="#{xBean.validateX}">
-                                        <f:ajax listener="#{xBean.update()}"/>
+                                    <h:selectBooleanCheckbox styleClass="x" value="#{xBean.xs[bdUtilBean.valueOf(3)]}" id="x3">
+                                        <f:ajax listener="#{xBean.update()}" render="x3"/>
                                     </h:selectBooleanCheckbox>
                                     <h:outputLabel for="x3" value="3"/>
                                 </td>
                                 <td>
-                                    <h:selectBooleanCheckbox styleClass="x" value="#{xBean.selectedX4}" id="x4"
-                                        validator="#{xBean.validateX}">
-                                        <f:ajax listener="#{xBean.update()}"/>
+                                    <h:selectBooleanCheckbox styleClass="x" value="#{xBean.xs[bdUtilBean.valueOf(4)]}" id="x4">
+                                        <f:ajax listener="#{xBean.update()}" render="x4"/>
                                     </h:selectBooleanCheckbox>
                                     <h:outputLabel for="x4" value="4"/>
                                 </td>
                                 <td>
-                                    <h:selectBooleanCheckbox styleClass="x" value="#{xBean.selectedX5}" id="x5"
-                                        validator="#{xBean.validateX}">
-                                        <f:ajax listener="#{xBean.update()}"/>
+                                    <h:selectBooleanCheckbox styleClass="x" value="#{xBean.xs[bdUtilBean.valueOf(5)]}" id="x5">
+                                        <f:ajax listener="#{xBean.update()}" render="x5"/>
                                     </h:selectBooleanCheckbox>
                                     <h:outputLabel for="x5" value="5"/>
                                 </td>
@@ -111,8 +104,8 @@
                         <table>
                             <tr>
                                 <td>
-                                    <h:inputText id="y" a:placeholder="(-4..4)" value="#{yBean.y}">
-                                            <f:validateRequired/>
+                                    <h:inputText id="y" a:placeholder="(-4..4)" value="#{yBean.y}" validator="#{yBean.validateY}" converter="javax.faces.BigDecimal">
+                                        <f:validateRequired/>
                                     </h:inputText>
                                 </td>
                             </tr>
@@ -130,17 +123,18 @@
                                     itemLabel="#{choice}"
                             />
                             <f:validateRequired/>
-<!--                            <f:ajax execute="@this" render="@form"/>-->
+                            <f:ajax execute="@this" render="@form"/>
                         </h:selectOneRadio>
                     </td>
                 </tr>
             </table>
-            <h:messages globalOnly="true" styleClass="error-message"/>
+            <h:messages styleClass="error-message"/>
             <table>
                 <tr style="text-align: center;">
                     <td>
                         <h:commandButton id="submit-button" value="Выстрелить">
-                            <f:ajax execute="@form" listener="#{shotListBean.addShots()}" render="@form previous-shots-table"/>
+                            <f:ajax execute="@form" listener="#{shotListBean.addShots()}"
+                                    render="@form previous-shots-table"/>
                         </h:commandButton>
                     </td>
                     <td>
