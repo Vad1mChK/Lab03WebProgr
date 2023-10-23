@@ -36,5 +36,10 @@ public class InputYBean implements Serializable {
             throw new ValidatorException(message);
         }
         BigDecimal value = (BigDecimal) o;
+        if (value.compareTo(Y_MIN) <= 0 || value.compareTo(Y_MAX) >= 0) {
+            y = null;
+            FacesMessage message = new FacesMessage("Значение y должно быть в диапазоне (" +
+                    Y_MIN + ".." + Y_MAX + ").");
+        }
     }
 }

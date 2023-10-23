@@ -8,6 +8,8 @@ const HIT_COLOR_FOR_MATCHING_R = "#94bc0e"
 const MISS_COLOR_FOR_MATCHING_R = "#d6001e"
 const R_EPSILON = 1e-6
 
+shots = []
+
 function getCanvas() {
     return canvas
 }
