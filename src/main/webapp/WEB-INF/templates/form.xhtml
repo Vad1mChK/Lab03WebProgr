@@ -39,7 +39,7 @@
                             <tr>
                                 <td>
                                     <h:inputHidden id="x-validate" value="#{xBean.allSelectedValues}"
-                                                   validator="#{xBean.validateX}"/>
+                                                   validator="#{xBean.validateX}" converter="bigDecimalListConverter"/>
                                     <h:selectBooleanCheckbox styleClass="x" value="#{xBean.xs[bdUtilBean.valueOf(-3)]}" id="x-3">
                                         <f:ajax listener="#{xBean.update()}" render="x-3"/>
                                         <f:validateRequired/>
