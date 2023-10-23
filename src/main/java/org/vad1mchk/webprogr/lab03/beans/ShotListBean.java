@@ -4,6 +4,7 @@ import org.vad1mchk.webprogr.lab03.database.ShotDao;
 import org.vad1mchk.webprogr.lab03.database.ShotDaoImplementation;
 
 import javax.enterprise.context.SessionScoped;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.io.Serializable;
@@ -49,6 +50,12 @@ public class ShotListBean implements Serializable {
         previousShots = shotsToLoad;
         if (!previousShots.isEmpty()) {
             lastShot = previousShots.get(previousShots.size() - 1);
+            previousShots.forEach((shot) -> {
+                if (shot != null)
+                    FacesContext.getCurrentInstance().getPartialViewContext().getEvalScripts().add(
+                            "drawShot(" + shot.getX() + ", " + shot.getY() + ", " + shot.getR() + ")"
+                    );
+            });
         } else {
             lastShot = null;
         }
@@ -83,6 +90,9 @@ public class ShotListBean implements Serializable {
         if (addedShot != null) {
             previousShots.add(addedShot);
             lastShot = addedShot;
+            FacesContext.getCurrentInstance().getPartialViewContext().getEvalScripts().add(
+                    "drawShot(" + shot.getX() + ", " + shot.getY() + ", " + shot.getR() + ")"
+            );
         }
     }
 

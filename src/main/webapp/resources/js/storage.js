@@ -82,7 +82,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
-    xElements.values().forEach((elem) => {
+    Object.values(xElements).forEach((elem) => {
         elem.addEventListener("change", () => {
             const checkedXs = Object.values(xElements).filter(el => el.checked).map(el => parseInt(el.value, 10));
             console.log(`X changed to: ${checkedXs}`)
@@ -98,9 +98,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
     rElements.forEach((elem) => {
         elem.addEventListener("change", () => {
-            const newR = elem.value
-            console.log(`R changed to: ${newR}`)
-            rChangeHandler(newR)
+            if (elem.checked) {
+                const newR = elem.value
+                console.log(`R changed to: ${newR}`)
+                rChangeHandler(newR)
+            }
         })
     })
 })

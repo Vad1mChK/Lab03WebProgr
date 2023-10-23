@@ -48,11 +48,29 @@ public class SelectXBean implements Serializable {
 
     public void setAllSelectedValues(List<BigDecimal> values) {
         xs.keySet().forEach((it) -> xs.put(it, false));
-        values.forEach((it) -> xs.put(it, true));
+        values.forEach((it) -> {
+            if(xs.containsKey(it)) {
+                xs.put(it, true);
+            }
+        });
     }
 
     public void validateX(FacesContext context, UIComponent component, Object o) {
-        if (!(o instanceof List) || ((List<?>) o).isEmpty()) {
+        if (o == null) {
+            FacesMessage message = new FacesMessage("При валидации значений X был передан null.");
+            throw new ValidatorException(message);
+        }
+
+        if (!(o instanceof List)) {
+            FacesMessage message = new FacesMessage(
+                    "При валидации значений X был передан не список (класс объекта: "
+                            + o.getClass().getName() + ")."
+            );
+            throw new ValidatorException(message);
+        }
+
+        List<?> list = (List<?>) o;
+        if (list.isEmpty()) {
             FacesMessage message = new FacesMessage("Выберите хотя бы одно значение X.");
             throw new ValidatorException(message);
         }
