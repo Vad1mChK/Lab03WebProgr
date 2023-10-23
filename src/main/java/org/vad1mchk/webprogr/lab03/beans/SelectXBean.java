@@ -11,6 +11,7 @@ import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.TreeMap;
 import java.util.stream.Collectors;
 
 @SessionScoped
@@ -21,7 +22,7 @@ public class SelectXBean implements Serializable {
 
     public SelectXBean() {
         super();
-        xs = new HashMap<>() {{
+        xs = new TreeMap<>() {{
             put(new BigDecimal("-3"), false);
             put(new BigDecimal("-2"), false);
             put(new BigDecimal("-1"), false);
