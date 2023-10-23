@@ -77,6 +77,7 @@ public class SelectXBean implements Serializable {
     }
 
     public void update() {
+        setAllSelectedValues(getAllSelectedValues());
         System.out.println(this);
     }
 
