@@ -49,6 +49,7 @@ public class ShotListBean implements Serializable {
         if (previousShots == null) {
             return;
         }
+        previousShots = shotsToLoad;
         if (!previousShots.isEmpty()) {
             lastShot = previousShots.get(previousShots.size() - 1);
         } else {

@@ -1,5 +1,7 @@
 package org.vad1mchk.webprogr.lab03.beans;
 
+import org.vad1mchk.webprogr.lab03.converters.ZonedDateTimeAttributeConverter;
+
 import javax.annotation.ManagedBean;
 import javax.enterprise.context.SessionScoped;
 import javax.persistence.*;
@@ -31,6 +33,7 @@ public class ShotBean implements Serializable {
     private boolean hit;
 
     @Column(name = "creation_date_time")
+    @Convert(converter = ZonedDateTimeAttributeConverter.class)
     private ZonedDateTime creationDateTime;
 
     @Column(name = "time_elapsed")
