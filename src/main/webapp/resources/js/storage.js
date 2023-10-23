@@ -75,32 +75,32 @@ document.addEventListener("DOMContentLoaded", () => {
         yElement.value = yStored
     }
 
-    // for (let rElement of rElements) {
-    //     if (rElement.value == rStored) {
-    //         rElement.checked = true
-    //         break
-    //     }
-    // }
-    //
-    // xElements.values().forEach((elem) => {
-    //     elem.addEventListener("change", () => {
-    //         const checkedXs = xElements.filter(el => el.checked).map(el => el.value)
-    //         console.log(`X changed to: ${checkedXs}`)
-    //         xChangeHandler(checkedXs)
-    //     })
-    // })
-    //
-    // yElement.addEventListener("change", () => {
-    //     const newY = yElement.value
-    //     console.log(`Y changed to: ${newY}`)
-    //     yChangeHandler(newY)
-    // })
-    //
-    // rElements.forEach((elem) => {
-    //     elem.addEventListener("change", () => {
-    //         const newR = elem.value
-    //         console.log(`R changed to: ${newR}`)
-    //         rChangeHandler(newR)
-    //     })
-    // })
+    for (let rElement of rElements) {
+        if (rElement.value == rStored) {
+            rElement.checked = true
+            break
+        }
+    }
+
+    xElements.values().forEach((elem) => {
+        elem.addEventListener("change", () => {
+            const checkedXs = Object.values(xElements).filter(el => el.checked).map(el => parseInt(el.value, 10));
+            console.log(`X changed to: ${checkedXs}`)
+            xChangeHandler(checkedXs)
+        })
+    })
+
+    yElement.addEventListener("change", () => {
+        const newY = yElement.value
+        console.log(`Y changed to: ${newY}`)
+        yChangeHandler(newY)
+    })
+
+    rElements.forEach((elem) => {
+        elem.addEventListener("change", () => {
+            const newR = elem.value
+            console.log(`R changed to: ${newR}`)
+            rChangeHandler(newR)
+        })
+    })
 })

@@ -40,56 +40,65 @@
                                 <td>
                                     <h:inputHidden id="x-validate" value="#{xBean.allSelectedValues}"
                                                    validator="#{xBean.validateX}" converter="bigDecimalListConverter"/>
-                                    <h:selectBooleanCheckbox styleClass="x" value="#{xBean.xs[bdUtilBean.valueOf(-3)]}" id="x-3">
+                                    <h:selectBooleanCheckbox styleClass="x" value="#{xBean.xs[bdUtilBean.valueOf(-3)]}"
+                                                             id="x-3">
                                         <f:ajax listener="#{xBean.update()}" render="x-3"/>
                                         <f:validateRequired/>
                                     </h:selectBooleanCheckbox>
                                     <h:outputLabel for="x-3" value="-3"/>
                                 </td>
                                 <td>
-                                    <h:selectBooleanCheckbox styleClass="x" value="#{xBean.xs[bdUtilBean.valueOf(-2)]}" id="x-2">
+                                    <h:selectBooleanCheckbox styleClass="x" value="#{xBean.xs[bdUtilBean.valueOf(-2)]}"
+                                                             id="x-2">
                                         <f:ajax listener="#{xBean.update()}" render="x-2"/>
                                     </h:selectBooleanCheckbox>
                                     <h:outputLabel for="x-2" value="-2"/>
                                 </td>
                                 <td>
-                                    <h:selectBooleanCheckbox styleClass="x" value="#{xBean.xs[bdUtilBean.valueOf(-1)]}" id="x-1">
+                                    <h:selectBooleanCheckbox styleClass="x" value="#{xBean.xs[bdUtilBean.valueOf(-1)]}"
+                                                             id="x-1">
                                         <f:ajax listener="#{xBean.update()}" render="x-1"/>
                                     </h:selectBooleanCheckbox>
                                     <h:outputLabel for="x-1" value="-1"/>
                                 </td>
                                 <td>
-                                    <h:selectBooleanCheckbox styleClass="x" value="#{xBean.xs[bdUtilBean.valueOf(0)]}" id="x0">
+                                    <h:selectBooleanCheckbox styleClass="x" value="#{xBean.xs[bdUtilBean.valueOf(0)]}"
+                                                             id="x0">
                                         <f:ajax listener="#{xBean.update()}" render="x0"/>
                                     </h:selectBooleanCheckbox>
                                     <h:outputLabel for="x0" value="0"/>
                                 </td>
                                 <td>
-                                    <h:selectBooleanCheckbox styleClass="x" value="#{xBean.xs[bdUtilBean.valueOf(1)]}" id="x1">
+                                    <h:selectBooleanCheckbox styleClass="x" value="#{xBean.xs[bdUtilBean.valueOf(1)]}"
+                                                             id="x1">
                                         <f:ajax listener="#{xBean.update()}" render="x1"/>
                                     </h:selectBooleanCheckbox>
                                     <h:outputLabel for="x1" value="1"/>
                                 </td>
                                 <td>
-                                    <h:selectBooleanCheckbox styleClass="x" value="#{xBean.xs[bdUtilBean.valueOf(2)]}" id="x2">
+                                    <h:selectBooleanCheckbox styleClass="x" value="#{xBean.xs[bdUtilBean.valueOf(2)]}"
+                                                             id="x2">
                                         <f:ajax listener="#{xBean.update()}" render="x2"/>
                                     </h:selectBooleanCheckbox>
                                     <h:outputLabel for="x2" value="2"/>
                                 </td>
                                 <td>
-                                    <h:selectBooleanCheckbox styleClass="x" value="#{xBean.xs[bdUtilBean.valueOf(3)]}" id="x3">
+                                    <h:selectBooleanCheckbox styleClass="x" value="#{xBean.xs[bdUtilBean.valueOf(3)]}"
+                                                             id="x3">
                                         <f:ajax listener="#{xBean.update()}" render="x3"/>
                                     </h:selectBooleanCheckbox>
                                     <h:outputLabel for="x3" value="3"/>
                                 </td>
                                 <td>
-                                    <h:selectBooleanCheckbox styleClass="x" value="#{xBean.xs[bdUtilBean.valueOf(4)]}" id="x4">
+                                    <h:selectBooleanCheckbox styleClass="x" value="#{xBean.xs[bdUtilBean.valueOf(4)]}"
+                                                             id="x4">
                                         <f:ajax listener="#{xBean.update()}" render="x4"/>
                                     </h:selectBooleanCheckbox>
                                     <h:outputLabel for="x4" value="4"/>
                                 </td>
                                 <td>
-                                    <h:selectBooleanCheckbox styleClass="x" value="#{xBean.xs[bdUtilBean.valueOf(5)]}" id="x5">
+                                    <h:selectBooleanCheckbox styleClass="x" value="#{xBean.xs[bdUtilBean.valueOf(5)]}"
+                                                             id="x5">
                                         <f:ajax listener="#{xBean.update()}" render="x5"/>
                                     </h:selectBooleanCheckbox>
                                     <h:outputLabel for="x5" value="5"/>
@@ -104,7 +113,8 @@
                         <table>
                             <tr>
                                 <td>
-                                    <h:inputText id="y" a:placeholder="(-4..4)" value="#{yBean.y}" validator="#{yBean.validateY}" converter="javax.faces.BigDecimal">
+                                    <h:inputText id="y" a:placeholder="(-4..4)" value="#{yBean.y}"
+                                                 validator="#{yBean.validateY}" converter="javax.faces.BigDecimal">
                                         <f:validateRequired/>
                                     </h:inputText>
                                 </td>
@@ -115,7 +125,7 @@
                 <tr>
                     <td>R:</td>
                     <td>
-                        <h:selectOneRadio value="#{rBean.rValues}" validator="#{rBean.validateR}">
+                        <h:selectOneRadio value="#{rBean.r}" validator="#{rBean.validateR}" id="r">
                             <f:selectItems
                                     value="#{rBean.rValues}"
                                     var="choice"
@@ -123,6 +133,7 @@
                                     itemLabel="#{choice}"
                             />
                             <f:validateRequired/>
+                            <f:converter converterId="javax.faces.BigDecimal"/>
                             <f:ajax execute="@this" render="@form"/>
                         </h:selectOneRadio>
                     </td>
