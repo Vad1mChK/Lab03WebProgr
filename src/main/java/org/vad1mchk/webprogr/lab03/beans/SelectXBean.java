@@ -2,6 +2,10 @@ package org.vad1mchk.webprogr.lab03.beans;
 
 import javax.annotation.ManagedBean;
 import javax.enterprise.context.SessionScoped;
+import javax.faces.application.FacesMessage;
+import javax.faces.component.UIComponent;
+import javax.faces.context.FacesContext;
+import javax.faces.validator.ValidatorException;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 import java.io.Serializable;
@@ -21,6 +25,10 @@ public class SelectXBean implements Serializable {
     private boolean selectedX3;
     private boolean selectedX4;
     private boolean selectedX5;
+
+    public SelectXBean() {
+        super();
+    }
 
     public boolean isSelectedXMinus3() {
         return selectedXMinus3;
@@ -96,15 +104,47 @@ public class SelectXBean implements Serializable {
 
     public List<BigDecimal> getAllSelectedValues() {
         List<BigDecimal> result = new ArrayList<>(9);
-        if (isSelectedXMinus3()) result.add(new BigDecimal("-3"));
-        if (isSelectedXMinus2()) result.add(new BigDecimal("-2"));
-        if (isSelectedXMinus1()) result.add(new BigDecimal("-1"));
-        if (isSelectedX0()) result.add(BigDecimal.ZERO);
-        if (isSelectedX1()) result.add(BigDecimal.ONE);
-        if (isSelectedX2()) result.add(new BigDecimal("2"));
-        if (isSelectedX3()) result.add(new BigDecimal("3"));
-        if (isSelectedX4()) result.add(new BigDecimal("4"));
-        if (isSelectedX5()) result.add(new BigDecimal("5"));
+        if (selectedXMinus3) result.add(new BigDecimal("-3"));
+        if (selectedXMinus2) result.add(new BigDecimal("-2"));
+        if (selectedXMinus1) result.add(new BigDecimal("-1"));
+        if (selectedX0) result.add(BigDecimal.ZERO);
+        if (selectedX1) result.add(BigDecimal.ONE);
+        if (selectedX2) result.add(new BigDecimal("2"));
+        if (selectedX3) result.add(new BigDecimal("3"));
+        if (selectedX4) result.add(new BigDecimal("4"));
+        if (selectedX5) result.add(new BigDecimal("5"));
         return result;
+    }
+
+    public void setAllSelectedValues(List<BigDecimal> values) {
+        if (values == null) return;
+        selectedXMinus3 = values.contains(new BigDecimal("-3"));
+        selectedXMinus2 = values.contains(new BigDecimal("-2"));
+        selectedXMinus1 = values.contains(new BigDecimal("-1"));
+        selectedX0 = values.contains(BigDecimal.ZERO);
+        selectedX1 = values.contains(BigDecimal.ONE);
+        selectedX2 = values.contains(new BigDecimal("2"));
+        selectedX3 = values.contains(new BigDecimal("3"));
+        selectedX4 = values.contains(new BigDecimal("4"));
+        selectedX5 = values.contains(new BigDecimal("5"));
+    }
+
+    public void validateX(FacesContext context, UIComponent component, Object o) {
+        if (
+                !selectedXMinus3 && !selectedXMinus2 && !selectedXMinus1 && !selectedX0 && !selectedX1 &&
+                        !selectedX2 && !selectedX3 && !selectedX4 && !selectedX5
+        ) {
+            FacesMessage message = new FacesMessage("Выберите хотя бы одно значение X.");
+            throw new ValidatorException(message);
+        }
+    }
+
+    public void update() {
+        System.out.println(this);
+    }
+
+    @Override
+    public String toString() {
+        return "SelectXBean {" + getAllSelectedValues() + "}";
     }
 }

@@ -41,7 +41,6 @@ public class ShotListBean implements Serializable {
         previousShots = new LinkedList<>();
         shotDao = new ShotDaoImplementation();
         loadShots();
-        System.out.println(previousShots);
     }
 
     public void loadShots() {
@@ -82,6 +81,7 @@ public class ShotListBean implements Serializable {
         shot.setTimeElapsed(endTime - startTime);
 
         ShotBean addedShot = shotDao.insertShot(shot);
+        System.out.println("New shot: " + shot);
         if (addedShot != null) {
             previousShots.add(addedShot);
             lastShot = addedShot;
@@ -106,6 +106,7 @@ public class ShotListBean implements Serializable {
         shotDao.deleteAllShots();
         previousShots.clear();
         lastShot = null;
+        System.out.println("Cleared all shots");
     }
 
     @Named("previousShots")

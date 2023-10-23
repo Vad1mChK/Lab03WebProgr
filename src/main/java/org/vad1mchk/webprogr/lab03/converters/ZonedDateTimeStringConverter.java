@@ -34,14 +34,14 @@ public class ZonedDateTimeStringConverter extends DateTimeConverter {
 
     @Override
     public Object getAsObject(FacesContext context, UIComponent component, String value) {
-        System.out.println("Converting string \"" + value + "to object");
+        System.out.println("Converting string \"" + value + "\" to object");
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern(getPattern(), getLocale());
         return ZonedDateTime.parse(value, formatter);
     }
 
     @Override
     public String getAsString(FacesContext context, UIComponent component, Object value) {
-        System.out.println("Converting object \"" + value + "to string");
+        System.out.println("Converting object \"" + value + "\" to string");
         if (value instanceof ZonedDateTime) {
             DateTimeFormatter formatter = DateTimeFormatter
                     .ofPattern(getPattern(), getLocale())

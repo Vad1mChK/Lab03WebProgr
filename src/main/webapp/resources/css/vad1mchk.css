@@ -286,3 +286,8 @@ button:enabled:hover, input[type="submit"]:enabled:hover, input[type="button"]:e
 #submit-button:disabled {
     color: #f4f4f480;
 }
+
+.error-message {
+    color: #ff6666;
+    font-style: italic;
+}
