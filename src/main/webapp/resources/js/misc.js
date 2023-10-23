@@ -5,5 +5,7 @@ function getZoneOffsetSeconds() {
 
 document.addEventListener("DOMContentLoaded", () => {
     const zoneInput = document.getElementById("zone")
-    zoneInput.value = getZoneOffsetSeconds()
+    const zoneOffset = getZoneOffsetSeconds()
+    zoneInput.value = zoneOffset
+    console.log(`Zone set to ${zoneOffset}.`)
 })

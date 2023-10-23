@@ -134,7 +134,7 @@
                             />
                             <f:validateRequired/>
                             <f:converter converterId="javax.faces.BigDecimal"/>
-                            <f:ajax execute="@this" render="@form"/>
+                            <f:ajax execute="@this" render="@this"/>
                         </h:selectOneRadio>
                     </td>
                 </tr>
@@ -150,7 +150,7 @@
                     </td>
                     <td>
                         <h:commandButton id="clear-button" value="Очистить выстрелы">
-                            <f:ajax execute="@form" listener="#{shotListBean.clearShots()}"/>
+                            <f:ajax execute="@none" render="previous-shots-table" listener="#{shotListBean.clearShots()}"/>
                         </h:commandButton>
                     </td>
                 </tr>
