@@ -6,7 +6,7 @@ import java.math.BigDecimal;
 
 @Named("bdUtilBean")
 @ApplicationScoped
-public class BigDecimalUtil {
+public class BigDecimalUtilBean {
     public BigDecimal valueOf(Long value) {
         return new BigDecimal(value);
     }
