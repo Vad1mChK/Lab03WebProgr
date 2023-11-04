@@ -39,9 +39,7 @@
                             <tr>
                                 <td>
                                     <h:inputHidden id="x-validate" value="#{xBean.allSelectedValues}"
-                                                   validator="#{xBean.validateX}" converter="bigDecimalListConverter">
-                                        <f:ajax render="@form previous-shots-table" />
-                                    </h:inputHidden>
+                                                   validator="#{xBean.validateX}" converter="bigDecimalListConverter" />
                                     <h:selectBooleanCheckbox styleClass="x" value="#{xBean.xs[bdUtilBean.valueOf(-3)]}"
                                                              id="x-3">
                                         <f:ajax listener="#{xBean.update()}"/>
@@ -152,7 +150,8 @@
                     </td>
                     <td>
                         <h:commandButton id="clear-button" value="Очистить выстрелы">
-                            <f:ajax execute="@none" render="previous-shots-table" listener="#{shotListBean.clearShots()}"/>
+                            <f:ajax execute="@none" listener="#{shotListBean.clearShots()}"
+                                    render="@form previous-shots-table"/>
                         </h:commandButton>
                     </td>
                 </tr>
