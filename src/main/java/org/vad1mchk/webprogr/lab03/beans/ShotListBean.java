@@ -15,7 +15,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 @SessionScoped
-@Named
+@Named("shotListBean")
 public class ShotListBean implements Serializable {
     @Inject
     private SelectXBean xBean;
@@ -29,7 +29,7 @@ public class ShotListBean implements Serializable {
     @Inject
     private TimeZoneBean zoneBean;
 
-    private ShotDao shotDao;
+    private final ShotDao shotDao;
 
     @Named("previousShots")
     private List<ShotBean> previousShots;
@@ -111,7 +111,9 @@ public class ShotListBean implements Serializable {
     }
 
     public void clearShots() {
-        shotDao.deleteAllShots();
+        if (!shotDao.deleteAllShots()) {
+            System.out.println("An error occurred when clearing the shots table in the database.");
+        };
         previousShots.clear();
         lastShot = null;
         System.out.println("Cleared all shots");

@@ -15,10 +15,8 @@ public class BigDecimalListStringConverter implements Converter<List<BigDecimal>
     @Override
     public List<BigDecimal> getAsObject(FacesContext context, UIComponent component, String value) {
         if (value == null) {
-            System.out.println("null was passed to bigDecimalListConverter");
             return null;
         }
-        System.out.println("Converting string '" + value + "' to list of BigDecimal");
         try {
             return Arrays
                     .stream(value
