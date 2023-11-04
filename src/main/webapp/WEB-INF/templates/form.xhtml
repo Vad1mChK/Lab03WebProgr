@@ -26,7 +26,7 @@
             <h:inputHidden id="graph-y" value="#{graphBean.y}"/>
             <h:commandButton id="graph-submit" style="display: none;"
                              action="#{shotListBean.addShot(graphBean.x, graphBean.y, rBean.r)}">
-                <f:ajax execute="@form" render="@form"/>
+                <f:ajax execute="@form" render="@form previous-shots-table"/>
             </h:commandButton>
         </h:form>
         <h:form id="element-shooting-gallery" prependId="false" styleClass="centered">

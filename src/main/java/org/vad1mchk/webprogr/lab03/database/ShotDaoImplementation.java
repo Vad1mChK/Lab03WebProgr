@@ -64,6 +64,7 @@ public class ShotDaoImplementation implements ShotDao {
             Query query = manager.createQuery("DELETE FROM ShotBean s");
             query.executeUpdate();
             manager.clear();
+            manager.flush();
             transaction.commit();
         } catch (RuntimeException e) {
             if (transaction.isActive()) {

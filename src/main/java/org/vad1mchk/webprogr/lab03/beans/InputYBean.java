@@ -40,6 +40,7 @@ public class InputYBean implements Serializable {
             y = null;
             FacesMessage message = new FacesMessage("Значение y должно быть в диапазоне (" +
                     Y_MIN + ".." + Y_MAX + ").");
+            throw new ValidatorException(message);
         }
     }
 }

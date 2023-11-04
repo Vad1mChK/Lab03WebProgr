@@ -8,7 +8,6 @@ import javax.faces.validator.ValidatorException;
 import javax.inject.Named;
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
@@ -23,15 +22,11 @@ public class SelectXBean implements Serializable {
     public SelectXBean() {
         super();
         xs = new TreeMap<>() {{
-            put(new BigDecimal("-3"), false);
-            put(new BigDecimal("-2"), false);
-            put(new BigDecimal("-1"), false);
-            put(BigDecimal.ZERO, false);
-            put(BigDecimal.ONE, false);
-            put(new BigDecimal("2"), false);
-            put(new BigDecimal("3"), false);
-            put(new BigDecimal("4"), false);
-            put(new BigDecimal("5"), false);
+            int xMin = -3;
+            int xMax = 5;
+            for (int x = xMin; x <= xMax; ++x) {
+                put(new BigDecimal(x), false);
+            }
         }};
     }
 

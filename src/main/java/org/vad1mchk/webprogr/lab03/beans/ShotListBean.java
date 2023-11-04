@@ -44,7 +44,7 @@ public class ShotListBean implements Serializable {
 
     public void loadShots() {
         List<ShotBean> shotsToLoad = shotDao.getAllShots();
-        if (previousShots == null) {
+        if (shotsToLoad == null) {
             return;
         }
         previousShots = shotsToLoad;
@@ -113,7 +113,9 @@ public class ShotListBean implements Serializable {
     public void clearShots() {
         if (!shotDao.deleteAllShots()) {
             System.out.println("An error occurred when clearing the shots table in the database.");
-        };
+        } else {
+            System.out.println("Shots cleared in database");
+        }
         previousShots.clear();
         lastShot = null;
         System.out.println("Cleared all shots");
