@@ -53,7 +53,7 @@ function redrawCanvas(r) {
     R = r;
     cleanCanvas();
     for (let shot of shots) {
-        drawShot(shot.x, shot.y, shot.r, shot.hit)
+        drawShot(shot.x, shot.y, r, shot.hit)
     }
 }
 
@@ -69,9 +69,16 @@ function sendShotFromCanvas(x, y) {
     document.getElementById("graph-submit").click();
 }
 
+function getR() {
+    document.getElementsByName("r").forEach((elem) => {
+            if (elem.checked) return elem.value
+    })
+    return null
+}
+
 document.addEventListener("DOMContentLoaded", () => {
     canvas = document.getElementById("aim-top");
-    R = getStoredR();
+    R = getR();
     cleanCanvas();
     canvas.onclick = (e) => {
         const realCoords = getShotPosition(e, 5);
