@@ -9,14 +9,6 @@ const MISS_COLOR_FOR_MATCHING_R = "#d6001e";
 
 let shots = [];
 
-function getCanvas() {
-    return canvas;
-}
-
-function setCanvas(newCanvas) {
-    canvas = newCanvas;
-}
-
 function cleanCanvas() {
     const ctx = canvas.getContext('2d', { alpha: true });
     ctx.clearRect(0, 0, WIDTH, HEIGHT);
@@ -53,10 +45,6 @@ function drawShot(x, y, r, hit) {
 
 function redrawCanvas(r) {
     cleanCanvas();
-    shots.forEach((shot) => {
-        const hit = shot.hit; // Assuming 'shot' has a 'hit' property
-        drawShot(shot.x, shot.y, r, hit);
-    });
 }
 
 function getShotPosition(event, r) {
@@ -73,7 +61,6 @@ function sendShotFromCanvas(x, y) {
 
 document.addEventListener("DOMContentLoaded", () => {
     canvas = document.getElementById("aim-top");
-    setCanvas(canvas);
     cleanCanvas();
     canvas.onclick = (e) => {
         const realCoords = getShotPosition(e, 5);
