@@ -70,15 +70,21 @@ function sendShotFromCanvas(x, y) {
 }
 
 function getR() {
-    document.getElementsByName("r").forEach((elem) => {
-            if (elem.checked) return elem.value
-    })
-    return null
+    let r = null
+    for (let elem of document.getElementsByName("r")) {
+        if (elem.checked) {
+            r = elem.value;
+            break;
+        }
+    }
+    console.log(`R obtained: ${r}`)
+    return null;
 }
 
 document.addEventListener("DOMContentLoaded", () => {
     canvas = document.getElementById("aim-top");
     R = getR();
+
     cleanCanvas();
     canvas.onclick = (e) => {
         const realCoords = getShotPosition(e, 5);
