@@ -11,6 +11,7 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
 >
 
 <h:body>
@@ -29,6 +30,14 @@
                 <f:ajax execute="@form" render="@form previous-shots-table"/>
             </h:commandButton>
         </h:form>
+        <h:outputScript>
+            <ui:repeat var="shot" value="#{shotListBean.previousShots}">
+                drawShot(#{shot.x}, #{shot.y}, #{shot.r}, #{shot.hit});
+            </ui:repeat>
+        </h:outputScript>
+        <h:outputScript>
+            redrawCanvas(#{rBean.r})
+        </h:outputScript>
         <h:form id="element-shooting-gallery" prependId="false" styleClass="centered">
             <h:inputHidden value="#{zoneBean.offsetSeconds}" id="zone"/>
             <table>
@@ -50,56 +59,56 @@
                                 <td>
                                     <h:selectBooleanCheckbox styleClass="x" value="#{xBean.xs[bdUtilBean.valueOf(-2)]}"
                                                              id="x-2">
-                                        <f:ajax listener="#{xBean.update()}" immediate="true"/>
+                                        <f:ajax listener="#{xBean.update()}"/>
                                     </h:selectBooleanCheckbox>
                                     <h:outputLabel for="x-2" value="-2"/>
                                 </td>
                                 <td>
                                     <h:selectBooleanCheckbox styleClass="x" value="#{xBean.xs[bdUtilBean.valueOf(-1)]}"
                                                              id="x-1">
-                                        <f:ajax listener="#{xBean.update()}" immediate="true"/>
+                                        <f:ajax listener="#{xBean.update()}"/>
                                     </h:selectBooleanCheckbox>
                                     <h:outputLabel for="x-1" value="-1"/>
                                 </td>
                                 <td>
                                     <h:selectBooleanCheckbox styleClass="x" value="#{xBean.xs[bdUtilBean.valueOf(0)]}"
                                                              id="x0">
-                                        <f:ajax listener="#{xBean.update()}" immediate="true"/>
+                                        <f:ajax listener="#{xBean.update()}"/>
                                     </h:selectBooleanCheckbox>
                                     <h:outputLabel for="x0" value="0"/>
                                 </td>
                                 <td>
                                     <h:selectBooleanCheckbox styleClass="x" value="#{xBean.xs[bdUtilBean.valueOf(1)]}"
                                                              id="x1">
-                                        <f:ajax listener="#{xBean.update()}" immediate="true"/>
+                                        <f:ajax listener="#{xBean.update()}"/>
                                     </h:selectBooleanCheckbox>
                                     <h:outputLabel for="x1" value="1"/>
                                 </td>
                                 <td>
                                     <h:selectBooleanCheckbox styleClass="x" value="#{xBean.xs[bdUtilBean.valueOf(2)]}"
                                                              id="x2">
-                                        <f:ajax listener="#{xBean.update()}" immediate="true"/>
+                                        <f:ajax listener="#{xBean.update()}"/>
                                     </h:selectBooleanCheckbox>
                                     <h:outputLabel for="x2" value="2"/>
                                 </td>
                                 <td>
                                     <h:selectBooleanCheckbox styleClass="x" value="#{xBean.xs[bdUtilBean.valueOf(3)]}"
                                                              id="x3">
-                                        <f:ajax listener="#{xBean.update()}" immediate="true"/>
+                                        <f:ajax listener="#{xBean.update()}"/>
                                     </h:selectBooleanCheckbox>
                                     <h:outputLabel for="x3" value="3"/>
                                 </td>
                                 <td>
                                     <h:selectBooleanCheckbox styleClass="x" value="#{xBean.xs[bdUtilBean.valueOf(4)]}"
                                                              id="x4">
-                                        <f:ajax listener="#{xBean.update()}" immediate="true"/>
+                                        <f:ajax listener="#{xBean.update()}"/>
                                     </h:selectBooleanCheckbox>
                                     <h:outputLabel for="x4" value="4"/>
                                 </td>
                                 <td>
                                     <h:selectBooleanCheckbox styleClass="x" value="#{xBean.xs[bdUtilBean.valueOf(5)]}"
                                                              id="x5">
-                                        <f:ajax listener="#{xBean.update()}" immediate="true"/>
+                                        <f:ajax listener="#{xBean.update()}"/>
                                     </h:selectBooleanCheckbox>
                                     <h:outputLabel for="x5" value="5"/>
                                 </td>

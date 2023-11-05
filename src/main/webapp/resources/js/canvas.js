@@ -1,99 +1,86 @@
-let canvas = null
-const WIDTH = 400
-const HEIGHT = 400
-const RADIUS = 120
-const DOT_RADIUS = 3
+let canvas = null;
+const WIDTH = 400;
+const HEIGHT = 400;
+const RADIUS = 120;
+const DOT_RADIUS = 3;
 
-const HIT_COLOR_FOR_MATCHING_R = "#94bc0e"
-const MISS_COLOR_FOR_MATCHING_R = "#d6001e"
-const R_EPSILON = 1e-6
+const HIT_COLOR_FOR_MATCHING_R = "#94bc0e";
+const MISS_COLOR_FOR_MATCHING_R = "#d6001e";
 
-shots = []
+let shots = [];
 
 function getCanvas() {
-    return canvas
+    return canvas;
 }
 
 function setCanvas(newCanvas) {
-    canvas = newCanvas
+    canvas = newCanvas;
 }
 
-function cleanCanvas(canvas) {
-    const ctx = canvas.getContext('2d', {alpha: true})
-    ctx.clearRect(0, 0, 400, 400);
+function cleanCanvas() {
+    const ctx = canvas.getContext('2d', { alpha: true });
+    ctx.clearRect(0, 0, WIDTH, HEIGHT);
 }
 
 function realToDrawnX(x, r) {
-    return WIDTH / 2 + RADIUS * x / r
+    return WIDTH / 2 + RADIUS * x / r;
 }
 
 function realToDrawnY(y, r) {
-    return HEIGHT / 2 - RADIUS * y / r
+    return HEIGHT / 2 - RADIUS * y / r;
 }
 
 function drawnToRealX(x, r) {
-    return (x - WIDTH / 2) * r / RADIUS
+    return (x - WIDTH / 2) * r / RADIUS;
 }
 
 function drawnToRealY(y, r) {
-    return -(y - HEIGHT / 2) * r / RADIUS
+    return -(y - HEIGHT / 2) * r / RADIUS;
 }
 
-function drawShot(canvas, r, shot) {
-    const ctx = canvas.getContext('2d', {alpha: true})
-    if (!shot) return
-    if (shot.x == null || shot.y == null || shot.r == null || shot.hit == null) return
+function drawShot(x, y, r, hit) {
+    const ctx = canvas.getContext('2d', { alpha: true });
+    const xDrawn = realToDrawnX(x, r);
+    const yDrawn = realToDrawnY(y, r);
 
-    const x = parseFloat(shot.x)
-    const y = parseFloat(shot.y)
-    const rShot = parseFloat(shot.r)
-    const hit = shot.hit
+    let shotColor = hit ? HIT_COLOR_FOR_MATCHING_R : MISS_COLOR_FOR_MATCHING_R;
 
-    const xDrawn = realToDrawnX(x, r)
-    const yDrawn = realToDrawnY(y, r)
-    if (!isFinite(xDrawn) || !isFinite(yDrawn)) {
-        return
-    }
-
-    let shotColor = hit ? HIT_COLOR_FOR_MATCHING_R : MISS_COLOR_FOR_MATCHING_R
-    if (Math.abs(r - rShot) >= R_EPSILON) shotColor += "80"
-
-    ctx.beginPath()
-    ctx.arc(xDrawn, yDrawn, DOT_RADIUS, 0, 2 * Math.PI, false)
-    ctx.fillStyle = shotColor
-    ctx.fill()
+    ctx.beginPath();
+    ctx.arc(xDrawn, yDrawn, DOT_RADIUS, 0, 2 * Math.PI, false);
+    ctx.fillStyle = shotColor;
+    ctx.fill();
 }
 
-function redrawCanvas(canvas, r, shots) {
-    const ctx = canvas.getContext('2d', {alpha: true})
-    cleanCanvas(canvas)
+function redrawCanvas(r) {
+    cleanCanvas();
     shots.forEach((shot) => {
-        drawShot(canvas, r, shot)
-    })
+        const hit = shot.hit; // Assuming 'shot' has a 'hit' property
+        drawShot(shot.x, shot.y, r, hit);
+    });
 }
 
-function getShotPosition(canvas, r, event) {
-    const drawnX = event.offsetX
-    const drawnY = event.offsetY
-    return {x: drawnToRealX(drawnX, r), y: drawnToRealY(drawnY, r)}
+function getShotPosition(event, r) {
+    const drawnX = event.offsetX;
+    const drawnY = event.offsetY;
+    return { x: drawnToRealX(drawnX, r), y: drawnToRealY(drawnY, r) };
 }
 
 function sendShotFromCanvas(x, y) {
-    document.getElementById("graph-x").value = x
-    document.getElementById("graph-y").value = y
-    document.getElementById("graph-submit").click()
+    document.getElementById("graph-x").value = x;
+    document.getElementById("graph-y").value = y;
+    document.getElementById("graph-submit").click();
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-    canvas = document.getElementById("aim-top")
-    setCanvas(canvas)
-    cleanCanvas(canvas)
+    canvas = document.getElementById("aim-top");
+    setCanvas(canvas);
+    cleanCanvas();
     canvas.onclick = (e) => {
-        const realCoords = getShotPosition(canvas, 5, e)
+        const realCoords = getShotPosition(e, 5);
         if (!isFinite(realCoords.x) || !isFinite(realCoords.y)) {
-            return
+            return;
         }
-        console.log(realCoords)
-        sendShotFromCanvas(realCoords.x, realCoords.y)
+        console.log(realCoords);
+        sendShotFromCanvas(realCoords.x, realCoords.y);
     }
-})
+});

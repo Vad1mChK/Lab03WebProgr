@@ -53,7 +53,10 @@ public class ShotListBean implements Serializable {
             previousShots.forEach((shot) -> {
                 if (shot != null)
                     FacesContext.getCurrentInstance().getPartialViewContext().getEvalScripts().add(
-                            "drawShot(" + shot.getX() + ", " + shot.getY() + ", " + shot.getR() + ")"
+                            "drawShot(" + shot.getX() + ", " +
+                                    shot.getY() + ", " +
+                                    shot.getR() + ", " +
+                                    shot.isHit() + ");"
                     );
             });
         } else {
@@ -91,7 +94,10 @@ public class ShotListBean implements Serializable {
             previousShots.add(addedShot);
             lastShot = addedShot;
             FacesContext.getCurrentInstance().getPartialViewContext().getEvalScripts().add(
-                    "drawShot(" + shot.getX() + ", " + shot.getY() + ", " + shot.getR() + ")"
+                    "drawShot(" + shot.getX() + ", " +
+                            shot.getY() + ", " +
+                            shot.getR() + ", " +
+                            shot.isHit() + ");"
             );
         }
     }
@@ -120,6 +126,7 @@ public class ShotListBean implements Serializable {
         }
         previousShots.clear();
         lastShot = null;
+        FacesContext.getCurrentInstance().getPartialViewContext().getEvalScripts().add("cleanCanvas();");
         System.out.println("Cleared all shots");
     }
 
