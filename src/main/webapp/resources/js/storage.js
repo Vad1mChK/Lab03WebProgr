@@ -43,13 +43,6 @@ function arrayAddIfNotExists(arr, elem) {
     }
 }
 
-function arrayRemoveIfExists(arr, elem) {
-    const index = arr.indexOf(elem);
-    if (index !== -1) {
-        arr.splice(index, 1)
-    }
-}
-
 document.addEventListener("DOMContentLoaded", () => {
     const xStored = getStoredXs()
     const yStored = getStoredY()
@@ -76,7 +69,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     for (let rElement of rElements) {
-        if (rElement.value == rStored) {
+        if (rElement.value === rStored) {
             rElement.checked = true
             break
         }
