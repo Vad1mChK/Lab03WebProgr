@@ -6,6 +6,8 @@ const DOT_RADIUS = 3;
 
 const HIT_COLOR_FOR_MATCHING_R = "#94bc0e";
 const MISS_COLOR_FOR_MATCHING_R = "#d6001e";
+const HIT_COLOR_FOR_UNMATCHING_R = "#157d26";
+const MISS_COLOR_FOR_UNMATCHING_R = "#7c021f";
 let R = 0;
 
 let shots = [];
@@ -37,8 +39,9 @@ function drawShot(x, y, r, hit) {
     const yDrawn = realToDrawnY(y, r);
     shots.push({x, y, r, hit});
 
-    let shotColor = hit ? HIT_COLOR_FOR_MATCHING_R : MISS_COLOR_FOR_MATCHING_R;
-    if (R !== r) shotColor += "80";
+    let shotColor = hit ?
+        (r === R ? HIT_COLOR_FOR_MATCHING_R : HIT_COLOR_FOR_UNMATCHING_R) :
+        (r === R ? MISS_COLOR_FOR_MATCHING_R : MISS_COLOR_FOR_UNMATCHING_R);
 
     ctx.beginPath();
     ctx.arc(xDrawn, yDrawn, DOT_RADIUS, 0, 2 * Math.PI, false);
@@ -68,7 +71,7 @@ function sendShotFromCanvas(x, y) {
 
 document.addEventListener("DOMContentLoaded", () => {
     canvas = document.getElementById("aim-top");
-    R = document.getElementById("r").value;
+    R = getStoredR();
     cleanCanvas();
     canvas.onclick = (e) => {
         const realCoords = getShotPosition(e, 5);
