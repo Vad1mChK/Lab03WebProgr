@@ -34,6 +34,7 @@ function drawShot(x, y, r, hit) {
     const ctx = canvas.getContext('2d', { alpha: true });
     const xDrawn = realToDrawnX(x, r);
     const yDrawn = realToDrawnY(y, r);
+    shots.push({x, y, r, hit})
 
     let shotColor = hit ? HIT_COLOR_FOR_MATCHING_R : MISS_COLOR_FOR_MATCHING_R;
 
@@ -45,6 +46,9 @@ function drawShot(x, y, r, hit) {
 
 function redrawCanvas(r) {
     cleanCanvas();
+    for (let shot of shots) {
+        drawShot(shot.x, shot.y, shot.r, shot.hit)
+    }
 }
 
 function getShotPosition(event, r) {
