@@ -113,7 +113,9 @@
                         <table>
                             <tr>
                                 <td>
-                                    <h:inputText id="y" a:placeholder="(-4..4)" value="#{yBean.y}"
+                                    <h:inputText id="y" a:placeholder="(-4..4)"
+                                                 a:length=""
+                                                 value="#{yBean.y}"
                                                  validator="#{yBean.validateY}" converter="javax.faces.BigDecimal">
                                         <f:validateRequired/>
                                     </h:inputText>
@@ -150,7 +152,7 @@
                     </td>
                     <td>
                         <h:commandButton id="clear-button" value="Очистить выстрелы">
-                            <f:ajax execute="@none" listener="#{shotListBean.clearShots()}"
+                            <f:ajax execute="@none" listener="#{shotListBean.clearShots}"
                                     render="@form previous-shots-table"/>
                         </h:commandButton>
                     </td>

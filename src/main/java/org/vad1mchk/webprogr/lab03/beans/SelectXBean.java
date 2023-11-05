@@ -8,6 +8,7 @@ import javax.faces.validator.ValidatorException;
 import javax.inject.Named;
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
@@ -19,6 +20,8 @@ public class SelectXBean implements Serializable {
 
     private Map<BigDecimal, Boolean> xs;
 
+    private List<BigDecimal> allSelectedValues;
+
     public SelectXBean() {
         super();
         xs = new TreeMap<>() {{
@@ -28,6 +31,7 @@ public class SelectXBean implements Serializable {
                 put(new BigDecimal(x), false);
             }
         }};
+        allSelectedValues = new ArrayList<>();
     }
 
     public Map<BigDecimal, Boolean> getXs() {
@@ -39,16 +43,11 @@ public class SelectXBean implements Serializable {
     }
 
     public List<BigDecimal> getAllSelectedValues() {
-        return xs.keySet().stream().filter(it -> xs.get(it)).collect(Collectors.toList());
+        return allSelectedValues;
     }
 
-    public void setAllSelectedValues(List<BigDecimal> values) {
-        xs.keySet().forEach((it) -> xs.put(it, false));
-        values.forEach((it) -> {
-            if(xs.containsKey(it)) {
-                xs.put(it, true);
-            }
-        });
+    public void setAllSelectedValues(List<BigDecimal> allSelectedValues) {
+        this.allSelectedValues = allSelectedValues;
     }
 
     public void validateX(FacesContext context, UIComponent component, Object o) {
@@ -73,12 +72,17 @@ public class SelectXBean implements Serializable {
     }
 
     public void update() {
-        setAllSelectedValues(getAllSelectedValues());
+        allSelectedValues.clear();
+        xs.keySet().forEach((key) -> {
+            if (xs.get(key)) {
+                allSelectedValues.add(key);
+            }
+        });
         System.out.println(this);
     }
 
     @Override
     public String toString() {
-        return "SelectXBean {" + getAllSelectedValues() + "}";
+        return "SelectXBean {" + allSelectedValues + ", " + xs + "}";
     }
 }

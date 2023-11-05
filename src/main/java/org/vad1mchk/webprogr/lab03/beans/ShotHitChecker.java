@@ -15,7 +15,7 @@ public class ShotHitChecker {
     }
 
     private static boolean checkTopRightQuadrant(BigDecimal x, BigDecimal y, BigDecimal r) {
-        return false; // It's a FEATURE
+        return false; // The area does not cover the top right quadrant
     }
 
     private static boolean checkTopLeftQuadrant(BigDecimal x, BigDecimal y, BigDecimal r) {

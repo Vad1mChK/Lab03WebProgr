@@ -97,6 +97,7 @@ public class ShotListBean implements Serializable {
     }
 
     public void addShots() {
+        System.out.println("Adding shots...");
         BigDecimal y = yBean.getY();
         BigDecimal r = rBean.getR();
         List<BigDecimal> xs = xBean.getAllSelectedValues();
@@ -111,6 +112,7 @@ public class ShotListBean implements Serializable {
     }
 
     public void clearShots() {
+        System.out.println("Preparing to clear shots.");
         if (!shotDao.deleteAllShots()) {
             System.out.println("An error occurred when clearing the shots table in the database.");
         } else {
