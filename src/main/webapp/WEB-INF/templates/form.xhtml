@@ -13,13 +13,13 @@
       xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
 >
 <h:body>
-    <f:viewAction type="preRenderView" action="#{shotListBean.loadShots()}"/>
     <div class="black-box centered" id="shooting-gallery">
         <h1>Тир</h1>
         <div id="aim">
             <h:graphicImage library="img" name="aim-bottom.svg" id="aim-bottom"/>
             <canvas id="aim-top" width="400" height="400"/>
         </div>
+        <f:event type="preRenderView" listener="#{shotListBean.loadShots()}"/>
         <h:form id="graph-shooting-gallery" prependId="false">
             <h:inputHidden id="graph-x" value="#{graphBean.x}"/>
             <h:inputHidden id="graph-y" value="#{graphBean.y}"/>
