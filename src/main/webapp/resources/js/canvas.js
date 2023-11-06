@@ -8,7 +8,8 @@ const HIT_COLOR_FOR_MATCHING_R = "#94bc0e";
 const MISS_COLOR_FOR_MATCHING_R = "#d6001e";
 const HIT_COLOR_FOR_UNMATCHING_R = "#157d26";
 const MISS_COLOR_FOR_UNMATCHING_R = "#7c021f";
-let R = 0;
+const EPSILON = 1e-6;
+let R = 1;
 
 let shots = [];
 
@@ -49,7 +50,7 @@ function drawShot(x, y, r, hit) {
     const xDrawn = realToDrawnX(x, R);
     const yDrawn = realToDrawnY(y, R);
 
-    let match = r === R
+    let match = Math.abs(r - R) <= EPSILON;
     let shotColor = hit ?
         (match ? HIT_COLOR_FOR_MATCHING_R : HIT_COLOR_FOR_UNMATCHING_R) :
         (match ? MISS_COLOR_FOR_MATCHING_R : MISS_COLOR_FOR_UNMATCHING_R);
