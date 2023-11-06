@@ -3,9 +3,9 @@ function getZoneOffsetSeconds() {
     return -currentDate.getTimezoneOffset() * 60;
 }
 
-document.addEventListener("DOMContentLoaded", () => {
+function miscMain() {
     const zoneInput = document.getElementById("zone")
     const zoneOffset = getZoneOffsetSeconds()
     zoneInput.value = zoneOffset
     console.log(`Zone set to ${zoneOffset}.`)
-})
+}

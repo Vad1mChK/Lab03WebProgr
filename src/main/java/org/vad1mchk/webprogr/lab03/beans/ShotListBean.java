@@ -53,7 +53,7 @@ public class ShotListBean implements Serializable {
             previousShots.forEach((shot) -> {
                 if (shot != null)
                     FacesContext.getCurrentInstance().getPartialViewContext().getEvalScripts().add(
-                            "drawShot(" + shot.getX() + ", " +
+                            "addShot(" + shot.getX() + ", " +
                                     shot.getY() + ", " +
                                     shot.getR() + ", " +
                                     shot.isHit() + ");"
@@ -94,7 +94,7 @@ public class ShotListBean implements Serializable {
             previousShots.add(addedShot);
             lastShot = addedShot;
             FacesContext.getCurrentInstance().getPartialViewContext().getEvalScripts().add(
-                    "drawShot(" + shot.getX() + ", " +
+                    "addShot(" + shot.getX() + ", " +
                             shot.getY() + ", " +
                             shot.getR() + ", " +
                             shot.isHit() + ");"

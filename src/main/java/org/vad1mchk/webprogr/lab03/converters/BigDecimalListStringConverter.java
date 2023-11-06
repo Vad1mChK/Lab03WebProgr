@@ -10,7 +10,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
-@FacesConverter(forClass = List.class, value = "bigDecimalListConverter", managed = true)
+@FacesConverter(value = "bigDecimalListConverter", managed = true)
 public class BigDecimalListStringConverter implements Converter<List<BigDecimal>> {
     @Override
     public List<BigDecimal> getAsObject(FacesContext context, UIComponent component, String value) {

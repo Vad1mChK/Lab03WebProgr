@@ -38,16 +38,23 @@ function drawnToRealY(y, r) {
     return -(y - HEIGHT / 2) * r / RADIUS;
 }
 
+function addShot(x, y, r, hit) {
+    console.log(`Added shot (x: ${x}, y: ${y}, r: ${r}, hit: ${hit})`)
+    shots.push({x, y, r, hit})
+    drawShot(x, y, r, hit)
+}
+
 function drawShot(x, y, r, hit) {
     const ctx = canvas.getContext('2d', { alpha: true });
-    const xDrawn = realToDrawnX(x, r);
-    const yDrawn = realToDrawnY(y, r);
-    shots.push({x, y, r, hit});
+    const xDrawn = realToDrawnX(x, R);
+    const yDrawn = realToDrawnY(y, R);
 
+    let match = r === R
     let shotColor = hit ?
-        (r === R ? HIT_COLOR_FOR_MATCHING_R : HIT_COLOR_FOR_UNMATCHING_R) :
-        (r === R ? MISS_COLOR_FOR_MATCHING_R : MISS_COLOR_FOR_UNMATCHING_R);
+        (match ? HIT_COLOR_FOR_MATCHING_R : HIT_COLOR_FOR_UNMATCHING_R) :
+        (match ? MISS_COLOR_FOR_MATCHING_R : MISS_COLOR_FOR_UNMATCHING_R);
 
+    console.log(`Drawing shot (x: ${x}, y: ${y}, r: ${r}, R: ${R}, match: ${match}, hit: ${hit})`)
     ctx.beginPath();
     ctx.arc(xDrawn, yDrawn, DOT_RADIUS, 0, 2 * Math.PI, false);
     ctx.fillStyle = shotColor;
@@ -56,6 +63,9 @@ function drawShot(x, y, r, hit) {
 
 function redrawCanvas(r) {
     R = r;
+    console.log(`R ${R} ${ r === R ? '==' : '!='} r ${r}`)
+    console.log(`Redrawing canvas with R = ${R}`)
+    shots.sort((a, b) =>  (b.r === R) - (a.r === R))
     cleanCanvas();
     for (let shot of shots) {
         drawShot(shot.x, shot.y, r, shot.hit)
@@ -75,26 +85,29 @@ function sendShotFromCanvas(x, y) {
 }
 
 function getR() {
-    let r = null
-    for (let elem of document.getElementsByName("r")) {
+    let r = null;
+    document.getElementsByName("r").forEach((elem) => {
         if (elem.checked) {
             r = elem.value;
-            break;
         }
-    }
-    console.log(`R obtained: ${r}`)
-    return null;
+    });
+    return r;
 }
-
-document.addEventListener("DOMContentLoaded", () => {
+function canvasMain() {
     canvas = document.getElementById("aim-top");
     R = getR();
+    if (R === null || isNaN(R)) {
+        R = 1;
+    }
 
     document.getElementsByName("r").forEach((elem) => {
         elem.addEventListener("change", () => {
-            redrawCanvas(getR());
-        })
-    })
+            const newR = getR();
+            if (newR !== null) {
+                redrawCanvas(newR);
+            }
+        });
+    });
 
     cleanCanvas();
     canvas.onclick = (e) => {
@@ -105,4 +118,4 @@ document.addEventListener("DOMContentLoaded", () => {
         console.log(realCoords);
         sendShotFromCanvas(realCoords.x, realCoords.y);
     }
-});
+}

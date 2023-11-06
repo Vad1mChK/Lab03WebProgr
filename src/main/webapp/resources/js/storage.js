@@ -37,13 +37,7 @@ function rChangeHandler(value) {
     setStoredR(value)
 }
 
-function arrayAddIfNotExists(arr, elem) {
-    if (!arr.includes(elem)) {
-        arr.push(elem)
-    }
-}
-
-document.addEventListener("DOMContentLoaded", () => {
+function storageMain() {
     const xStored = getStoredXs()
     const yStored = getStoredY()
     const rStored = getStoredR()
@@ -58,13 +52,12 @@ document.addEventListener("DOMContentLoaded", () => {
     const yElement = document.getElementById('y')
     const rElements = [...document.getElementsByName('r')]
 
-    xStored.forEach((x) => {
+    if (xStored && xStored.length) {
+        let x = xStored[0]
         if (xElements[x]) {
-            xElements[x].checked = true
-            xElements[x].click()
-            xElements[x].click()
+            xElements[x].checked = true;
         }
-    })
+    }
 
     if (yStored) {
         yElement.value = yStored
@@ -102,4 +95,5 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         })
     })
-})
+}
+

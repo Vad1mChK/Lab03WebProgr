@@ -1,6 +1,7 @@
 package org.vad1mchk.webprogr.lab03.beans;
 
 import org.vad1mchk.webprogr.lab03.converters.ZonedDateTimeAttributeConverter;
+import org.vad1mchk.webprogr.lab03.converters.ZonedDateTimeStringConverter;
 
 import javax.annotation.ManagedBean;
 import javax.enterprise.context.SessionScoped;
@@ -123,14 +124,13 @@ public class ShotBean implements Serializable {
 
     @Override
     public String toString() {
-        return "ShotBean{" +
-                "id=" + id +
-                ", x=" + x +
-                ", y=" + y +
-                ", r=" + r +
-                ", hit=" + hit +
-                ", creationDateTime=" + creationDateTime +
-                ", timeElapsed=" + timeElapsed +
+        return "{ id: " + id +
+                ", x: \"" + x +
+                "\", y: \"" + y +
+                "\", r: \"" + r +
+                "\", hit: " + hit +
+                ", creationDateTime: \"" + creationDateTime +
+                "\", timeElapsed: " + timeElapsed +
                 '}';
     }
 }

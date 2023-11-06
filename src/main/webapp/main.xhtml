@@ -11,11 +11,6 @@
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
 <ui:composition template="/WEB-INF/templates/master.xhtml">
-    <ui:define name="head">
-        <h:outputScript library="js" name="storage.js"/>
-        <h:outputScript library="js" name="canvas.js"/>
-        <h:outputScript library="js" name="misc.js"/>
-    </ui:define>
     <ui:define name="main">
         <div class="black-box">
             <h:link value="Назад на стартовую" styleClass="to-index-link" outcome="to-index"/>

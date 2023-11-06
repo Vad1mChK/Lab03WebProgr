@@ -13,7 +13,6 @@
       xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
 >
-
 <h:body>
     <f:event type="preRenderView" listener="#{shotListBean.loadShots()}"/>
     <div class="black-box centered" id="shooting-gallery">
@@ -27,7 +26,7 @@
             <h:inputHidden id="graph-y" value="#{graphBean.y}"/>
             <h:commandButton id="graph-submit" style="display: none;"
                              action="#{shotListBean.addShot(graphBean.x, graphBean.y, rBean.r)}">
-                <f:ajax execute="@form" render="@form previous-shots-table"/>
+                <f:ajax execute="@all" render="@form previous-shots-table"/>
             </h:commandButton>
         </h:form>
         <h:form id="element-shooting-gallery" prependId="false" styleClass="centered">
@@ -160,13 +159,19 @@
                 </tr>
             </table>
         </h:form>
-        <h:outputScript>
-            <ui:repeat var="shot" value="#{shotListBean.previousShots}">
-                drawShot(#{shot.x}, #{shot.y}, #{shot.r}, #{shot.hit});
-            </ui:repeat>
-        </h:outputScript>
-        <h:outputScript>
-            redrawCanvas(#{rBean.r})
+        <h:outputScript library="js" name="storage.js" target="body" defer="true"/>
+        <h:outputScript library="js" name="canvas.js" target="body" defer="true"/>
+        <h:outputScript library="js" name="misc.js" target="body" defer="true"/>
+        <h:outputScript target="body" defer="true">
+            document.addEventListener('DOMContentLoaded', () => {
+                miscMain();
+                storageMain();
+                canvasMain();
+            });
+
+            window.addEventListener('load', () => {
+
+            });
         </h:outputScript>
     </div>
 </h:body>

@@ -13,7 +13,7 @@ import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Locale;
 
-@FacesConverter(forClass = ZonedDateTime.class, value = "zonedDateTimeConverter", managed = true)
+@FacesConverter(/*forClass = ZonedDateTime.class, */value = "zonedDateTimeConverter", managed = true)
 public class ZonedDateTimeStringConverter extends DateTimeConverter {
 
     public static final Locale RUSSIAN_LOCALE = new Locale("ru", "RU");
