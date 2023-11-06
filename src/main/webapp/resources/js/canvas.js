@@ -46,7 +46,7 @@ function addShot(x, y, r, hit) {
 }
 
 function drawShot(x, y, r, hit) {
-    const ctx = canvas.getContext('2d', { alpha: true });
+    const ctx = canvas.getContext('2d', {alpha: true});
     const xDrawn = realToDrawnX(x, R);
     const yDrawn = realToDrawnY(y, R);
 
@@ -64,9 +64,9 @@ function drawShot(x, y, r, hit) {
 
 function redrawCanvas(r) {
     R = r;
-    console.log(`R ${R} ${ r === R ? '==' : '!='} r ${r}`)
+    console.log(`R ${R} ${r === R ? '==' : '!='} r ${r}`)
     console.log(`Redrawing canvas with R = ${R}`)
-    shots.sort((a, b) =>  (b.r === R) - (a.r === R))
+    shots.sort((a, b) => (b.r === R) - (a.r === R))
     cleanCanvas();
     for (let shot of shots) {
         drawShot(shot.x, shot.y, r, shot.hit)
@@ -76,7 +76,7 @@ function redrawCanvas(r) {
 function getShotPosition(event, r) {
     const drawnX = event.offsetX;
     const drawnY = event.offsetY;
-    return { x: drawnToRealX(drawnX, r), y: drawnToRealY(drawnY, r) };
+    return {x: drawnToRealX(drawnX, r), y: drawnToRealY(drawnY, r)};
 }
 
 function sendShotFromCanvas(x, y) {
@@ -94,6 +94,7 @@ function getR() {
     });
     return r;
 }
+
 function canvasMain() {
     canvas = document.getElementById("aim-top");
     R = getR();
@@ -111,12 +112,12 @@ function canvasMain() {
     });
 
     cleanCanvas();
-    canvas.addEventListener("change", (e) => {
+    canvas.onclick = (e) => {
         const realCoords = getShotPosition(e, 5);
         if (!isFinite(realCoords.x) || !isFinite(realCoords.y)) {
             return;
         }
         console.log(realCoords);
         sendShotFromCanvas(realCoords.x, realCoords.y);
-    });
+    };
 }

@@ -1,7 +1,6 @@
 package org.vad1mchk.webprogr.lab03.beans;
 
 import org.vad1mchk.webprogr.lab03.converters.ZonedDateTimeAttributeConverter;
-import org.vad1mchk.webprogr.lab03.converters.ZonedDateTimeStringConverter;
 
 import javax.annotation.ManagedBean;
 import javax.enterprise.context.SessionScoped;

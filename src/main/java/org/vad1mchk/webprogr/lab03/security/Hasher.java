@@ -1,8 +1,5 @@
 package org.vad1mchk.webprogr.lab03.security;
 
-import java.io.IOException;
-import java.io.Serializable;
-
 /**
  * Represents a hashing mechanism for hashing strings with optional salt values.
  */
@@ -19,7 +16,7 @@ public interface Hasher {
      * Hashes a given string with an additional salt.
      *
      * @param string The string to be hashed.
-     * @param salt The salt byte array to use in the hashing process.
+     * @param salt   The salt byte array to use in the hashing process.
      * @return The hashed byte array.
      */
     byte[] hash(String string, byte[] salt);

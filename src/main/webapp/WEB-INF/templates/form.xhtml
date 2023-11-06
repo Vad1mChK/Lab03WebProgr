@@ -38,7 +38,7 @@
                             <tr>
                                 <td>
                                     <h:inputHidden id="x-validate" value="#{xBean.allSelectedValues}"
-                                                   validator="#{xBean.validateX}" converter="bigDecimalListConverter" />
+                                                   validator="#{xBean.validateX}" converter="bigDecimalListConverter"/>
                                     <h:selectBooleanCheckbox styleClass="x" value="#{xBean.xs[bdUtilBean.valueOf(-3)]}"
                                                              id="x-3">
                                         <f:ajax listener="#{xBean.update()}"/>
@@ -163,14 +163,14 @@
         <h:outputScript library="js" name="misc.js" target="body" defer="true"/>
         <h:outputScript target="body" defer="true">
             document.addEventListener('DOMContentLoaded', () => {
-                miscMain();
-                storageMain();
-                canvasMain();
+            miscMain();
+            storageMain();
+            canvasMain();
             });
 
-            window.addEventListener('load', () => {
-                redrawCanvas(#{rBean.r});
-            });
+            <!--            window.addEventListener('load', () => {-->
+            <!--                redrawCanvas(#{rBean.r});-->
+            <!--            });-->
         </h:outputScript>
     </div>
 </h:body>

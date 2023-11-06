@@ -17,20 +17,15 @@ import java.util.List;
 @SessionScoped
 @Named("shotListBean")
 public class ShotListBean implements Serializable {
+    private final ShotDao shotDao;
     @Inject
     private SelectXBean xBean;
-
     @Inject
     private InputYBean yBean;
-
     @Inject
     private SelectRBean rBean;
-
     @Inject
     private TimeZoneBean zoneBean;
-
-    private final ShotDao shotDao;
-
     @Named("previousShots")
     private List<ShotBean> previousShots;
     private ShotBean lastShot;

@@ -1,6 +1,5 @@
 package org.vad1mchk.webprogr.lab03.beans;
 
-import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.component.UIComponent;
