@@ -108,6 +108,7 @@ public class ShotListBean implements Serializable {
         System.out.println("Entered Y: " + y);
         BigDecimal r = rBean.getR();
         System.out.println("Selected R: " + r);
+        xBean.update();
         List<BigDecimal> xs = xBean.getAllSelectedValues();
         System.out.println("All selected Xs: " + xs);
 
@@ -130,7 +131,7 @@ public class ShotListBean implements Serializable {
         }
         previousShots.clear();
         lastShot = null;
-        FacesContext.getCurrentInstance().getPartialViewContext().getEvalScripts().add("cleanCanvas();");
+        FacesContext.getCurrentInstance().getPartialViewContext().getEvalScripts().add("cleanAll();");
         System.out.println("Cleared all shots");
     }
 

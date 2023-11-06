@@ -61,6 +61,8 @@ document.addEventListener("DOMContentLoaded", () => {
     xStored.forEach((x) => {
         if (xElements[x]) {
             xElements[x].checked = true
+            xElements[x].click()
+            xElements[x].click()
         }
     })
 
@@ -77,7 +79,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
     Object.values(xElements).forEach((elem) => {
         elem.addEventListener("change", () => {
-            const checkedXs = Object.values(xElements).filter(el => el.checked).map(el => parseInt(el.value, 10));
+            const checkedXs = Object.values(xElements)
+                .filter(el => el.checked)
+                .map(el => parseInt(el.id.replace("x", ""), 10));
             console.log(`X changed to: ${checkedXs}`)
             xChangeHandler(checkedXs)
         })

@@ -13,8 +13,13 @@ let R = 0;
 let shots = [];
 
 function cleanCanvas() {
-    const ctx = canvas.getContext('2d', { alpha: true });
+    const ctx = canvas.getContext('2d');
     ctx.clearRect(0, 0, WIDTH, HEIGHT);
+}
+
+function cleanAll() {
+    cleanCanvas()
+    shots = []
 }
 
 function realToDrawnX(x, r) {

@@ -10,7 +10,7 @@ import javax.inject.Named;
 import java.io.Serializable;
 import java.math.BigDecimal;
 
-@ApplicationScoped
+@SessionScoped
 @Named("yBean")
 public class InputYBean implements Serializable {
     private static final BigDecimal Y_MIN = new BigDecimal(-4);

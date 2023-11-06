@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-@ApplicationScoped
+@SessionScoped
 @Named("rBean")
 public class SelectRBean implements Serializable {
     private static final BigDecimal R_MIN = BigDecimal.ONE;

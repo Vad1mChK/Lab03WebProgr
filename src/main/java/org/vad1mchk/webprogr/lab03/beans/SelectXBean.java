@@ -1,5 +1,6 @@
 package org.vad1mchk.webprogr.lab03.beans;
 
+import javax.annotation.PostConstruct;
 import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
@@ -15,7 +16,7 @@ import java.util.Map;
 import java.util.TreeMap;
 import java.util.stream.Collectors;
 
-@ApplicationScoped
+@SessionScoped
 @Named("xBean")
 public class SelectXBean implements Serializable {
 
@@ -49,6 +50,7 @@ public class SelectXBean implements Serializable {
 
     public void setAllSelectedValues(List<BigDecimal> allSelectedValues) {
         this.allSelectedValues = allSelectedValues;
+        System.out.println("Setting selected values: " + allSelectedValues);
     }
 
     public void validateX(FacesContext context, UIComponent component, Object ignored) {
@@ -66,6 +68,7 @@ public class SelectXBean implements Serializable {
                 updatedValues.add(key);
             }
         });
+        System.out.println("Updated values: " + updatedValues);
         allSelectedValues = updatedValues;
         System.out.println(this);
     }
