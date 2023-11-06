@@ -4,6 +4,8 @@ import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
 import java.io.Serializable;
 import java.time.ZoneOffset;
+import java.util.HashMap;
+import java.util.Map;
 
 @SessionScoped
 @Named("zoneBean")
@@ -20,15 +22,11 @@ public class TimeZoneBean implements Serializable {
         updateZone();
     }
 
-    public void updateZone() {
+    private void updateZone() {
         this.zone = ZoneOffset.ofTotalSeconds(offsetSeconds);
     }
 
     public ZoneOffset getZone() {
         return zone;
-    }
-
-    public void setZone(ZoneOffset zone) {
-        this.zone = zone;
     }
 }

@@ -7,6 +7,8 @@ import javax.faces.context.ResponseWriter;
 import java.io.IOException;
 import java.time.ZoneOffset;
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Objects;
 
 /**
@@ -20,52 +22,34 @@ import java.util.Objects;
  */
 @FacesComponent(createTag = true, tagName = "zoneMeme", namespace = "vad1mchk")
 public class ZoneMemeComponent extends UIComponentBase {
-    @Override
-    public String getFamily() {
-        return "zoneMeme";
-    }
 
-    public enum AvailableZone {
-        WASHINGTON_DC(ZoneOffset.ofHours(-5), "Washington, D.C.", "washingtonDc.jpg"),
-        MOSCOW(ZoneOffset.ofHours(3), "Moscow | Москва","moscow.jpg"),
-        BEIJING(ZoneOffset.ofHours(8), "Beijing | 北京", "beijing.png"),
-        TOKYO(ZoneOffset.ofHours(9), "Tokyo | 東京", "tokyo.png");
+    private final Map<ZoneOffset, String> zoneMemeMap;
 
-        private final ZoneOffset offset;
-        private final String zoneName;
-        private final String memeName;
-
-        AvailableZone(ZoneOffset zone, String zoneName, String memeName) {
-            this.offset = zone;
-            this.zoneName = zoneName;
-            this.memeName = memeName;
-        }
-
-        public ZoneOffset getOffset() {
-            return offset;
-        }
-
-        public String getMemeName() {
-            return memeName;
-        }
-    }
-
-    private AvailableZone zone;
+    private ZoneOffset zone;
 
     // Override necessary methods and add your logic for rendering the component
     // ...
 
-    public void setZoneOffset(ZoneOffset zoneOffset) {
-        zone = zoneOffset != null ?
-                Arrays.stream(AvailableZone.values())
-                        .filter(it -> Objects.equals(zoneOffset, it.getOffset()))
-                        .findFirst()
-                        .orElse(null) :
-                null;
+    public ZoneMemeComponent() {
+        zoneMemeMap = new HashMap<>() {{
+            put(ZoneOffset.ofHours(-5), "washingtonDc.jpg");
+            put(ZoneOffset.ofHours(3), "moscow.jpg");
+            put(ZoneOffset.ofHours(8), "beijing.png");
+            put(ZoneOffset.ofHours(9), "tokyo.png");
+        }};
     }
 
-    public ZoneOffset getZoneOffset() {
-        return zone.getOffset();
+    public void setZone(ZoneOffset zone) {
+        this.zone = zone;
+    }
+
+    public ZoneOffset getZone() {
+        return zone;
+    }
+
+    @Override
+    public String getFamily() {
+        return "zoneMeme";
     }
 
     @Override
@@ -84,6 +68,6 @@ public class ZoneMemeComponent extends UIComponentBase {
     }
 
     private String determineMeme() {
-        return zone != null ? zone.getMemeName() : "nullMeme.jpg";
+        return zoneMemeMap.getOrDefault(zone, "nullMeme.jpg");
     }
 }

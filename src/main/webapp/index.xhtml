@@ -3,15 +3,22 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:va="vad1mchk"
 >
 <ui:composition template="/WEB-INF/templates/master.xhtml">
     <ui:define name="head">
         <h:outputScript library="js" name="clock.js"/>
     </ui:define>
     <ui:define name="main">
-        <div class="black-box">
+        <div class="black-box centered">
             <h1 id="clock">Текущее время</h1>
             <p class="centered"><h:link styleClass="to-main-link" outcome="to-main">На основную страницу</h:link></p>
+            <h:form>
+                <label for="zone-change">Часовой пояс: </label>
+                <h:selectOneMenu id="zone-change">
+
+                </h:selectOneMenu>
+            </h:form>
         </div>
     </ui:define>
 </ui:composition>
