@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:va="vad1mchk"
+      xmlns:va="vad1mchk" xmlns:f="http://java.sun.com/jsf/core"
 >
 <ui:composition template="/WEB-INF/templates/master.xhtml">
     <ui:define name="head">
@@ -14,10 +14,14 @@
             <h1 id="clock">Текущее время</h1>
             <p class="centered"><h:link styleClass="to-main-link" outcome="to-main">На основную страницу</h:link></p>
             <h:form>
-                <label for="zone-change">Часовой пояс: </label>
-                <h:selectOneMenu id="zone-change">
-
+                <label for="zone-select">Часовой пояс: </label>
+                <h:selectOneMenu value="#{zoneBean.offsetSeconds}" id="zone-select">
+                    <f:selectItems value="#{zoneBean.availableZones}" var="zoneEntry"
+                                   itemValue="#{zoneEntry.value}" itemLabel="#{zoneEntry.key}" />
+                    <f:ajax render="memeImage" />
                 </h:selectOneMenu>
+
+                <va:zoneMeme id="meme" zoneOffset="#{zoneBean.zone}" />
             </h:form>
         </div>
     </ui:define>
