@@ -43,6 +43,7 @@ public class ShotListBean implements Serializable {
     }
 
     public void loadShots() {
+        System.out.println("Loading shots...");
         List<ShotBean> shotsToLoad = shotDao.getAllShots();
         if (shotsToLoad == null) {
             return;

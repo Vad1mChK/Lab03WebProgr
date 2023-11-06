@@ -110,14 +110,12 @@ function canvasMain() {
     });
 
     cleanCanvas();
-    canvas.onclick = (e) => {
+    canvas.addEventListener("change", (e) => {
         const realCoords = getShotPosition(e, 5);
         if (!isFinite(realCoords.x) || !isFinite(realCoords.y)) {
             return;
         }
         console.log(realCoords);
         sendShotFromCanvas(realCoords.x, realCoords.y);
-    }
-
-    document.getElementById("graph-submit").click();
+    });
 }
