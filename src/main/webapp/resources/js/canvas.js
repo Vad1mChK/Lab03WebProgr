@@ -39,7 +39,7 @@ function drawnToRealY(y, r) {
 }
 
 function addShot(x, y, r, hit) {
-    console.log(`Added shot (x: ${x}, y: ${y}, r: ${r}, hit: ${hit})`)
+    console.log(`Adding shot (x: ${x}, y: ${y}, r: ${r}, hit: ${hit})`)
     shots.push({x, y, r, hit})
     drawShot(x, y, r, hit)
 }
@@ -118,4 +118,6 @@ function canvasMain() {
         console.log(realCoords);
         sendShotFromCanvas(realCoords.x, realCoords.y);
     }
+
+    document.getElementById("graph-submit").click();
 }
