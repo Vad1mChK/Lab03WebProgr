@@ -20,7 +20,7 @@ public class ZoneMemeComponent extends UIComponentBase {
     private enum AvailableZone {
         WASHINGTON_DC(ZoneOffset.ofHours(-5), "washingtonDc.jpg"),
         MOSCOW(ZoneOffset.ofHours(3), "moscow.jpg"),
-        BEIJING(ZoneOffset.ofHours(8), "beijing.gif"),
+        BEIJING(ZoneOffset.ofHours(8), "beijing.png"),
         TOKYO(ZoneOffset.ofHours(9), "tokyo.png");
 
         private final ZoneOffset offset;
