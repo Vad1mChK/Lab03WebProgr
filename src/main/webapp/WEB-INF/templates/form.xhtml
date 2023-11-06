@@ -13,7 +13,7 @@
       xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
 >
 <h:body>
-    <f:event type="preRenderView" listener="#{shotListBean.loadShots()}"/>
+    <f:viewAction type="preRenderView" action="#{shotListBean.loadShots()}"/>
     <div class="black-box centered" id="shooting-gallery">
         <h1>Тир</h1>
         <div id="aim">

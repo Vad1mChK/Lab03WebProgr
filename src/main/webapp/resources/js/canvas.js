@@ -64,10 +64,9 @@ function drawShot(x, y, r, hit) {
 
 function redrawCanvas(r) {
     R = r;
-    console.log(`R ${R} ${r === R ? '==' : '!='} r ${r}`)
+    console.log(`R changed to ${R}`)
     console.log(`Redrawing canvas with R = ${R}`)
-    shots.sort((a, b) => (b.r === R) - (a.r === R))
-    cleanCanvas();
+    cleanCanvas()
     for (let shot of shots) {
         drawShot(shot.x, shot.y, r, shot.hit)
     }
