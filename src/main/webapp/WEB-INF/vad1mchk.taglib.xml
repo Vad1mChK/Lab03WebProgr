@@ -4,9 +4,9 @@
                 xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee
                                     http://xmlns.jcp.org/xml/ns/javaee/web-facelettaglibrary_2_2.xsd"
                 version="2.2">
-    <namespace>varargparse</namespace>
+    <namespace>vad1mchk</namespace>
     <tag>
-        <tag-name>zoneMemeComponent</tag-name>
+        <tag-name>zoneMeme</tag-name>
         <component>
             <component-type>org.vad1mchk.webprogr.lab03.components.ZoneMemeComponent</component-type>
         </component>

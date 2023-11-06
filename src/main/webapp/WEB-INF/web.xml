@@ -22,7 +22,7 @@
     </filter-mapping>
     <context-param>
         <param-name>facelets.LIBRARIES</param-name>
-        <param-value>/WEB-INF/varargparse.taglib.xml</param-value>
+        <param-value>/WEB-INF/vad1mchk.taglib.xml</param-value>
     </context-param>
     <welcome-file-list>
         <welcome-file>index.xhtml</welcome-file>

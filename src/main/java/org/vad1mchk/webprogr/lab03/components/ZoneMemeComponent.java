@@ -9,25 +9,35 @@ import java.time.ZoneOffset;
 import java.util.Arrays;
 import java.util.Objects;
 
-// CustomComponent.java
-@FacesComponent(createTag = true, tagName = "customTimeComponent", namespace = "varargparse")
+/**
+ * Component for displaying a meme as an image based on the underlying {@code ZoneOffset} which can be changed
+ * dynamically.
+ *
+ * Outputs a fitting meme image using the HTML {@code <img ... />} tag, with a default placeholder image in case of an
+ * invalid timezone.
+ *
+ * @author Vad1mChK
+ */
+@FacesComponent(createTag = true, tagName = "zoneMeme", namespace = "vad1mchk")
 public class ZoneMemeComponent extends UIComponentBase {
     @Override
     public String getFamily() {
         return "zoneMeme";
     }
 
-    private enum AvailableZone {
-        WASHINGTON_DC(ZoneOffset.ofHours(-5), "washingtonDc.jpg"),
-        MOSCOW(ZoneOffset.ofHours(3), "moscow.jpg"),
-        BEIJING(ZoneOffset.ofHours(8), "beijing.png"),
-        TOKYO(ZoneOffset.ofHours(9), "tokyo.png");
+    public enum AvailableZone {
+        WASHINGTON_DC(ZoneOffset.ofHours(-5), "Washington, D.C.", "washingtonDc.jpg"),
+        MOSCOW(ZoneOffset.ofHours(3), "Moscow | Москва","moscow.jpg"),
+        BEIJING(ZoneOffset.ofHours(8), "Beijing | 北京", "beijing.png"),
+        TOKYO(ZoneOffset.ofHours(9), "Tokyo | 東京", "tokyo.png");
 
         private final ZoneOffset offset;
+        private final String zoneName;
         private final String memeName;
 
-        AvailableZone(ZoneOffset zone, String memeName) {
+        AvailableZone(ZoneOffset zone, String zoneName, String memeName) {
             this.offset = zone;
+            this.zoneName = zoneName;
             this.memeName = memeName;
         }
 

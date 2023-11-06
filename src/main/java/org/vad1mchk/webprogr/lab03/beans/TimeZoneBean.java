@@ -27,4 +27,8 @@ public class TimeZoneBean implements Serializable {
     public ZoneOffset getZone() {
         return zone;
     }
+
+    public void setZone(ZoneOffset zone) {
+        this.zone = zone;
+    }
 }
