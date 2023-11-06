@@ -85,6 +85,12 @@ document.addEventListener("DOMContentLoaded", () => {
     canvas = document.getElementById("aim-top");
     R = getR();
 
+    document.getElementsByName("r").forEach((elem) => {
+        elem.addEventListener("change", () => {
+            redrawCanvas(getR());
+        })
+    })
+
     cleanCanvas();
     canvas.onclick = (e) => {
         const realCoords = getShotPosition(e, 5);

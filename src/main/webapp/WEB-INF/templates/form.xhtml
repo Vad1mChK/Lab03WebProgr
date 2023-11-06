@@ -30,14 +30,6 @@
                 <f:ajax execute="@form" render="@form previous-shots-table"/>
             </h:commandButton>
         </h:form>
-        <h:outputScript>
-            <ui:repeat var="shot" value="#{shotListBean.previousShots}">
-                drawShot(#{shot.x}, #{shot.y}, #{shot.r}, #{shot.hit});
-            </ui:repeat>
-        </h:outputScript>
-        <h:outputScript>
-            redrawCanvas(#{rBean.r})
-        </h:outputScript>
         <h:form id="element-shooting-gallery" prependId="false" styleClass="centered">
             <h:inputHidden value="#{zoneBean.offsetSeconds}" id="zone"/>
             <table>
@@ -168,6 +160,14 @@
                 </tr>
             </table>
         </h:form>
+        <h:outputScript>
+            <ui:repeat var="shot" value="#{shotListBean.previousShots}">
+                drawShot(#{shot.x}, #{shot.y}, #{shot.r}, #{shot.hit});
+            </ui:repeat>
+        </h:outputScript>
+        <h:outputScript>
+            redrawCanvas(#{rBean.r})
+        </h:outputScript>
     </div>
 </h:body>
 
