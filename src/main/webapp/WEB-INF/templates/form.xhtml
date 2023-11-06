@@ -163,14 +163,14 @@
         <h:outputScript library="js" name="misc.js" target="body" defer="true"/>
         <h:outputScript target="body" defer="true">
             document.addEventListener('DOMContentLoaded', () => {
-            miscMain();
-            storageMain();
-            canvasMain();
+                miscMain();
+                storageMain();
+                canvasMain();
             });
 
-            <!--            window.addEventListener('load', () => {-->
-            <!--                redrawCanvas(#{rBean.r});-->
-            <!--            });-->
+            window.addEventListener('load', () => {
+                redrawCanvas(#{rBean.r});
+            });
         </h:outputScript>
     </div>
 </h:body>
