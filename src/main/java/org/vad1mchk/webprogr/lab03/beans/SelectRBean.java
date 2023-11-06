@@ -42,6 +42,7 @@ public class SelectRBean implements Serializable {
         }
     }
 
+    // no hecking clue why the lowercase r according to the JavaBeans naming convention
     public List<BigDecimal> getrValues() {
         return rValues;
     }

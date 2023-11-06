@@ -153,7 +153,7 @@
                     </td>
                     <td>
                         <h:commandButton id="clear-button" value="Очистить выстрелы">
-                            <f:ajax execute="@none" listener="#{shotListBean.clearShots()}"
+                            <f:ajax listener="#{shotListBean.clearShots()}"
                                     render="@form previous-shots-table"/>
                         </h:commandButton>
                     </td>
