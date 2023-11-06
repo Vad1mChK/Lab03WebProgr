@@ -43,7 +43,7 @@
                                                    validator="#{xBean.validateX}" converter="bigDecimalListConverter" />
                                     <h:selectBooleanCheckbox styleClass="x" value="#{xBean.xs[bdUtilBean.valueOf(-3)]}"
                                                              id="x-3">
-                                        <f:ajax listener="#{xBean.update()}" immediate="true"/>
+                                        <f:ajax listener="#{xBean.update()}"/>
                                         <f:validateRequired/>
                                     </h:selectBooleanCheckbox>
                                     <h:outputLabel for="x-3" value="-3"/>

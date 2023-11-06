@@ -1,5 +1,6 @@
 package org.vad1mchk.webprogr.lab03.beans;
 
+import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.component.UIComponent;
@@ -9,7 +10,7 @@ import javax.inject.Named;
 import java.io.Serializable;
 import java.math.BigDecimal;
 
-@SessionScoped
+@ApplicationScoped
 @Named("yBean")
 public class InputYBean implements Serializable {
     private static final BigDecimal Y_MIN = new BigDecimal(-4);

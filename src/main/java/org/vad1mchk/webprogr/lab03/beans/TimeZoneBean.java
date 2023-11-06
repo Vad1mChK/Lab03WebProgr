@@ -1,12 +1,13 @@
 package org.vad1mchk.webprogr.lab03.beans;
 
+import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 import java.io.Serializable;
 import java.time.ZoneOffset;
 
-@SessionScoped
+@ApplicationScoped
 @Named("zoneBean")
 public class TimeZoneBean implements Serializable {
     private int offsetSeconds;

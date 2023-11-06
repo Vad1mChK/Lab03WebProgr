@@ -1,5 +1,6 @@
 package org.vad1mchk.webprogr.lab03.beans;
 
+import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.component.UIComponent;
@@ -12,13 +13,13 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-@SessionScoped
+@ApplicationScoped
 @Named("rBean")
 public class SelectRBean implements Serializable {
     private static final BigDecimal R_MIN = BigDecimal.ONE;
     private static final BigDecimal R_MAX = new BigDecimal(5);
 
-    private List<BigDecimal> rValues;
+    private final List<BigDecimal> rValues;
 
     private BigDecimal r;
 

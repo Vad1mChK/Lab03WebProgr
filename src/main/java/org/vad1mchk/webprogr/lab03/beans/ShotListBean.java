@@ -105,8 +105,11 @@ public class ShotListBean implements Serializable {
     public void addShots() {
         System.out.println("Adding shots...");
         BigDecimal y = yBean.getY();
+        System.out.println("Entered Y: " + y);
         BigDecimal r = rBean.getR();
+        System.out.println("Selected R: " + r);
         List<BigDecimal> xs = xBean.getAllSelectedValues();
+        System.out.println("All selected Xs: " + xs);
 
         if (xs == null || xs.isEmpty()) {
             return;
@@ -115,6 +118,7 @@ public class ShotListBean implements Serializable {
         for (BigDecimal x : xs) {
             addShot(x, y, r);
         }
+        System.out.println("Added " + xs.size() + " shots.");
     }
 
     public void clearShots() {

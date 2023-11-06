@@ -1,5 +1,6 @@
 package org.vad1mchk.webprogr.lab03.beans;
 
+import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.component.UIComponent;
@@ -14,7 +15,7 @@ import java.util.Map;
 import java.util.TreeMap;
 import java.util.stream.Collectors;
 
-@SessionScoped
+@ApplicationScoped
 @Named("xBean")
 public class SelectXBean implements Serializable {
 
@@ -50,34 +51,22 @@ public class SelectXBean implements Serializable {
         this.allSelectedValues = allSelectedValues;
     }
 
-    public void validateX(FacesContext context, UIComponent component, Object o) {
-        if (o == null) {
-            FacesMessage message = new FacesMessage("При валидации значений X был передан null.");
-            throw new ValidatorException(message);
-        }
-
-        if (!(o instanceof List)) {
-            FacesMessage message = new FacesMessage(
-                    "При валидации значений X был передан не список (класс объекта: "
-                            + o.getClass().getName() + ")."
-            );
-            throw new ValidatorException(message);
-        }
-
-        List<?> list = (List<?>) o;
-        if (list.isEmpty()) {
+    public void validateX(FacesContext context, UIComponent component, Object ignored) {
+        update();
+        if (allSelectedValues.isEmpty()) {
             FacesMessage message = new FacesMessage("Выберите хотя бы одно значение X.");
             throw new ValidatorException(message);
         }
     }
 
     public void update() {
-        allSelectedValues.clear();
+        List<BigDecimal> updatedValues = new ArrayList<>();
         xs.keySet().forEach((key) -> {
             if (xs.get(key)) {
-                allSelectedValues.add(key);
+                updatedValues.add(key);
             }
         });
+        allSelectedValues = updatedValues;
         System.out.println(this);
     }
 
