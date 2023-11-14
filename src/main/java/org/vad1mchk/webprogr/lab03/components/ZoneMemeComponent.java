@@ -1,5 +1,7 @@
 package org.vad1mchk.webprogr.lab03.components;
 
+import org.vad1mchk.webprogr.lab03.util.ZoneOption;
+
 import javax.faces.component.FacesComponent;
 import javax.faces.component.UIComponentBase;
 import javax.faces.context.FacesContext;
@@ -23,7 +25,7 @@ import java.util.Objects;
 @FacesComponent(createTag = true, tagName = "zoneMeme", namespace = "vad1mchk")
 public class ZoneMemeComponent extends UIComponentBase {
 
-    private final Map<ZoneOffset, String> zoneMemeMap;
+    private final Map<ZoneOption, String> zoneMemeMap;
 
     private ZoneOffset zone;
 
@@ -32,10 +34,10 @@ public class ZoneMemeComponent extends UIComponentBase {
 
     public ZoneMemeComponent() {
         zoneMemeMap = new HashMap<>() {{
-            put(ZoneOffset.ofHours(-5), "washingtonDc.jpg");
-            put(ZoneOffset.ofHours(3), "moscow.jpg");
-            put(ZoneOffset.ofHours(8), "beijing.png");
-            put(ZoneOffset.ofHours(9), "tokyo.png");
+            put(ZoneOption.WASHINGTON, "washingtonDc.jpg");
+            put(ZoneOption.MOSCOW, "moscow.jpg");
+            put(ZoneOption.BEIJING, "beijing.png");
+            put(ZoneOption.TOKYO, "tokyo.png");
         }};
     }
 
