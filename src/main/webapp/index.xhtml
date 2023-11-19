@@ -3,27 +3,44 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:va="vad1mchk" xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:va="vad1mchk"
 >
 <ui:composition template="/WEB-INF/templates/master.xhtml">
     <ui:define name="head">
-        <h:outputScript library="js" name="clock.js"/>
+        <h:outputStylesheet library="css" name="meme.css"/>
     </ui:define>
     <ui:define name="main">
         <div class="black-box centered">
-            <h1 id="clock">Текущее время</h1>
-            <p class="centered"><h:link styleClass="to-main-link" outcome="to-main">На основную страницу</h:link></p>
-            <h:form>
+            <h:form id="clock-form" prependId="false">
+                <h:inputHidden id="zone" value="#{zoneBean.offsetSeconds}" />
+                <h:inputHidden id="server-zone" value="#{zoneBean.zone != null ? zoneBean.zone.totalSeconds : ''}" />
+                <h1>
+                    <h:outputText value="#{clockBean.timeString}" id="clock" />
+                </h1>
+                <p class="centered"><h:link styleClass="to-main-link" outcome="to-main">На основную страницу</h:link></p>
                 <label for="zone-select">Часовой пояс: </label>
-                <h:selectOneMenu value="#{zoneBean.offsetSeconds}" id="zone-select">
-                    <f:selectItems value="#{zoneBean.availableZones}" var="zoneEntry"
-                                   itemValue="#{zoneEntry.value}" itemLabel="#{zoneEntry.key}" />
-                    <f:ajax render="memeImage" />
+                <h:selectOneMenu value="#{zoneBean.zone}" id="zone-select" converter="zoneIdConverter">
+                    <f:selectItems value="#{zoneBean.availableZones}" var="zoneOption"
+                                   itemValue="#{zoneOption.zone}" itemLabel="#{zoneOption.zoneName}" />
+                    <f:ajax render="clock" />
                 </h:selectOneMenu>
-
-                <va:zoneMeme id="meme" zoneOffset="#{zoneBean.zone}" />
             </h:form>
         </div>
+        <!-- TODO Replace with va:meme -->
+        <h:graphicImage library="img" name="memes/tokyo.png" id="meme" />
+        <!-- -->
+        <div id="blocking-wall" class="disabled"></div>
+        <h:outputScript library="js" name="misc.js" target="body" defer="true"/>
+        <h:outputScript library="js" name="clock.js" target="body" defer="true"/>
+        <h:outputScript library="js" name="meme.js" target="body" defer="true"/>
+        <h:outputScript target="body" defer="true">
+            document.addEventListener('DOMContentLoaded', () => {
+                miscMain();
+                clockMain();
+                memeMain();
+            });
+        </h:outputScript>
     </ui:define>
 </ui:composition>
 </html>

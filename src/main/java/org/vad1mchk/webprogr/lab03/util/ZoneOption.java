@@ -3,24 +3,25 @@ package org.vad1mchk.webprogr.lab03.util;
 import java.time.ZoneOffset;
 
 public enum ZoneOption {
-    WASHINGTON("Вашингтон", ZoneOffset.ofHours(-5)),
-    MOSCOW("Москва", ZoneOffset.ofHours(3)),
-    BEIJING("Пекин", ZoneOffset.ofHours(8)),
-    TOKYO("Токио", ZoneOffset.ofHours(9));
+    // no need to account for time saving, this is just a lab after all
+    WASHINGTON_DC( "UTC-5 (Washington, D.C.)", ZoneOffset.ofHours(-5)),
+    MOSCOW("UTC+3 (Moscow)", ZoneOffset.ofHours(3)),
+    BEIJING("UTC+8 (Beijing)", ZoneOffset.ofHours(8)),
+    TOKYO("UTC+9 (Tokyo)", ZoneOffset.ofHours(9));
 
     private String zoneName;
-    private ZoneOffset zoneOffset;
+    private ZoneOffset zone;
 
-    ZoneOption(String zoneName, ZoneOffset zoneOffset) {
+    ZoneOption(String zoneName, ZoneOffset zone) {
         this.zoneName = zoneName;
-        this.zoneOffset = zoneOffset;
+        this.zone = zone;
     }
 
     public String getZoneName() {
         return zoneName;
     }
 
-    public ZoneOffset getZoneOffset() {
-        return zoneOffset;
+    public ZoneOffset getZone() {
+        return zone;
     }
 }
