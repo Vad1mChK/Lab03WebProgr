@@ -62,14 +62,35 @@ function drawShot(x, y, r, hit) {
     ctx.fill();
 }
 
+function redrawLabels(r) {
+    let labelsToUpdate = [
+        {id: 'minusRX', value: -r},
+        {id: 'minusHalfRX', value: -r / 2},
+        {id: 'halfRX', value: r / 2},
+        {id: 'rX', value: r},
+        {id: 'minusRY', value: -r},
+        {id: 'minusHalfRY', value: -r / 2},
+        {id: 'halfRY', value: r / 2},
+        {id: 'rY', value: r}
+    ];
+
+    labelsToUpdate.forEach(label => {
+        let element = document.getElementById(label.id);
+        if (element) {
+            element.textContent = label.value;
+        }
+    });
+}
+
 function redrawCanvas(r) {
     R = r;
     console.log(`R changed to ${R}`)
     console.log(`Redrawing canvas with R = ${R}`)
     cleanCanvas()
     for (let shot of shots) {
-        drawShot(shot.x, shot.y, r, shot.hit)
+        drawShot(shot.x, shot.y, shot.r, shot.hit)
     }
+    redrawLabels(r)
 }
 
 function getShotPosition(event, r) {
@@ -102,21 +123,34 @@ function canvasMain() {
     }
 
     document.getElementsByName("r").forEach((elem) => {
-        elem.addEventListener("change", () => {
-            const newR = getR();
-            if (newR !== null) {
-                redrawCanvas(newR);
-            }
-        });
+        elem.addEventListener("change", onRChange);
     });
 
     cleanCanvas();
     canvas.onclick = (e) => {
-        const realCoords = getShotPosition(e, 5);
+        const realCoords = getShotPosition(e, R);
         if (!isFinite(realCoords.x) || !isFinite(realCoords.y)) {
             return;
         }
         console.log(realCoords);
         sendShotFromCanvas(realCoords.x, realCoords.y);
     };
+}
+
+function reattachRListeners() {
+    document.getElementsByName("r").forEach((elem) => {
+        elem.removeEventListener("change", onRChange)
+        elem.addEventListener("change", onRChange);
+    })
+}
+
+function onRChange() {
+    const newR = getR();
+    if (newR !== null) {
+        redrawCanvas(newR);
+    }
+}
+
+function test() {
+    console.log('only invoked from server')
 }

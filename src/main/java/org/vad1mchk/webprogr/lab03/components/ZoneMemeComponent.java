@@ -13,7 +13,7 @@ import java.util.Map;
 /**
  * Component for displaying a meme as an image based on the underlying {@code ZoneOffset} which can be changed
  * dynamically.
- *
+ * <p>
  * Outputs a fitting meme image using the HTML {@code <img ... />} tag, with a default placeholder image in case of an
  * invalid timezone.
  *
@@ -33,23 +33,27 @@ public class ZoneMemeComponent extends UIComponentBase {
         }});
     }
 
-    private ZoneOffset zone;
-
     @Override
     public void encodeBegin(FacesContext context) throws IOException {
         if (context == null) {
             throw new NullPointerException("FacesContext cannot be null");
         }
 
-        // Start encoding the component
+        ZoneOffset zone = (ZoneOffset) getAttributes().get("zone");
+
+        System.out.println("Rendering meme...");
         ResponseWriter writer = context.getResponseWriter();
-        writer.startElement("img", this); // Start the <img> tag
+        writer.startElement("img", this);
 
-        String imageUrl = determineImageUrl(); // Implement this method based on ZoneOffset
-        writer.writeAttribute("src", imageUrl, null); // Set the src attribute for the image
-        // Add other necessary attributes like style, alt text, etc.
+        String clientId = getClientId(context);
+        if (clientId != null && !clientId.isEmpty()) {
+            writer.writeAttribute("id", clientId, "id");
+        }
 
-        writer.endElement("img"); // End the <img> tag
+        String imageUrl = determineImageUrl(zone);
+        writer.writeAttribute("src", imageUrl, null);
+
+        writer.endElement("img");
     }
 
     @Override
@@ -57,15 +61,10 @@ public class ZoneMemeComponent extends UIComponentBase {
         return "vad1mchk.components";
     }
 
-    public ZoneOffset getZone() {
-        return this.zone;
-    }
 
-    public void setZone(ZoneOffset zone) {
-        this.zone = zone;
-    }
-
-    private String determineImageUrl() {
-        return "/resources/img/" + MEMES.getOrDefault(zone, DEFAULT_MEME);
+    private String determineImageUrl(ZoneOffset zone) {
+        FacesContext facesContext = FacesContext.getCurrentInstance();
+        String contextPath = facesContext.getExternalContext().getRequestContextPath();
+        return contextPath + "/resources/img/memes/" + MEMES.getOrDefault(zone, DEFAULT_MEME);
     }
 }

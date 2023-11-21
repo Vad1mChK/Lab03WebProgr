@@ -46,7 +46,12 @@ public class SelectXBean implements Serializable {
     }
 
     public void setAllSelectedValues(List<BigDecimal> allSelectedValues) {
+
         this.allSelectedValues = allSelectedValues;
+        System.out.println("All selected values set to: " + allSelectedValues);
+        xs.keySet().forEach(key -> {
+            xs.put(key, allSelectedValues.contains(key));
+        });
     }
 
     public void validateX(FacesContext context, UIComponent component, Object ignored) {

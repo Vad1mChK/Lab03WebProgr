@@ -51,12 +51,22 @@ function storageMain() {
     }
     const yElement = document.getElementById('y')
     const rElements = [...document.getElementsByName('r')]
+    const xListElement = document.getElementById('x-validate')
 
     if (xStored && xStored.length) {
         let x = xStored[0]
         if (xElements[x]) {
-            xElements[x].checked = true;
+            xElements[x].click()
         }
+    }
+
+    if (xListElement) {
+        const xValues = JSON.stringify(
+            Object.keys(xElements)
+                .filter((it) => xElements[it].checked)
+                .map((it) => parseInt(it, 10))
+        )
+        console.log('Values of X detected during page load: ' + xValues)
     }
 
     if (yStored) {

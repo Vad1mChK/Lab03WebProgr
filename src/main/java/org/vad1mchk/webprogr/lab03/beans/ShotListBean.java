@@ -42,7 +42,10 @@ public class ShotListBean implements Serializable {
         if (shotsToLoad == null) {
             return;
         }
+        FacesContext.getCurrentInstance().getPartialViewContext().getEvalScripts().add("cleanAll();");
+        FacesContext.getCurrentInstance().getPartialViewContext().getEvalScripts().add("test();");
         previousShots = shotsToLoad;
+        System.out.println("Loaded " + previousShots.size() + " shots.");
         if (!previousShots.isEmpty()) {
             lastShot = previousShots.get(previousShots.size() - 1);
             previousShots.forEach((shot) -> {
@@ -53,7 +56,9 @@ public class ShotListBean implements Serializable {
                                     shot.getR() + ", " +
                                     shot.isHit() + ");"
                     );
+                    System.out.print('+');
             });
+            FacesContext.getCurrentInstance().getPartialViewContext().getEvalScripts().add("");
         } else {
             lastShot = null;
         }

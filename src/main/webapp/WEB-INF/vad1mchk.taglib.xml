@@ -1,14 +1,21 @@
 <?xml version="1.0"?>
-<facelet-taglib xmlns="http://xmlns.jcp.org/xml/ns/javaee"
-                xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<facelet-taglib xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                xmlns="http://xmlns.jcp.org/xml/ns/javaee"
                 xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee
                                     http://xmlns.jcp.org/xml/ns/javaee/web-facelettaglibrary_2_2.xsd"
                 version="2.2">
     <namespace>vad1mchk</namespace>
+
     <tag>
         <tag-name>zoneMeme</tag-name>
         <component>
             <component-type>org.vad1mchk.webprogr.lab03.components.ZoneMemeComponent</component-type>
         </component>
+        <!-- Define attributes here -->
+        <attribute>
+            <name>zone</name>
+            <required>true</required>
+            <type>java.time.ZoneOffset</type>
+        </attribute>
     </tag>
 </facelet-taglib>

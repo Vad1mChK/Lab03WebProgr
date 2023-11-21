@@ -13,7 +13,7 @@ function miscMain() {
 
         jsf.ajax.request(zoneInput, null, {
             execute: 'zone',
-            render: 'clock'
+            render: 'clock meme zone-select'
         });
     }
 }

@@ -25,4 +25,8 @@
             <redirect/>
         </navigation-case>
     </navigation-rule>
+    <component>
+        <component-type>org.vad1mchk.webprogr.lab03.components.ZoneMemeComponent</component-type>
+        <component-class>org.vad1mchk.webprogr.lab03.components.ZoneMemeComponent</component-class>
+    </component>
 </faces-config>

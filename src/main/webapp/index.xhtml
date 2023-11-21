@@ -13,29 +13,31 @@
     <ui:define name="main">
         <div class="black-box centered">
             <h:form id="clock-form" prependId="false">
-                <h:inputHidden id="zone" value="#{zoneBean.offsetSeconds}" />
-                <h:inputHidden id="server-zone" value="#{zoneBean.zone != null ? zoneBean.zone.totalSeconds : ''}" />
+                <h:inputHidden id="zone" value="#{zoneBean.offsetSeconds}"/>
+
+                <h:inputHidden id="server-zone" value="#{zoneBean.zone != null ? zoneBean.offsetSeconds : ''}"/>
                 <h1>
-                    <h:outputText value="#{clockBean.timeString}" id="clock" />
+                    <h:outputText value="#{clockBean.timeString}" id="clock"/>
                 </h1>
-                <p class="centered"><h:link styleClass="to-main-link" outcome="to-main">На основную страницу</h:link></p>
+                <p class="centered"><h:link styleClass="to-main-link" outcome="to-main">На основную страницу</h:link>
+                </p>
                 <label for="zone-select">Часовой пояс: </label>
                 <h:selectOneMenu value="#{zoneBean.zone}" id="zone-select" converter="zoneIdConverter">
                     <f:selectItems value="#{zoneBean.availableZones}" var="zoneOption"
-                                   itemValue="#{zoneOption.zone}" itemLabel="#{zoneOption.zoneName}" />
-                    <f:ajax render="clock" />
+                                   itemValue="#{zoneOption.zone}" itemLabel="#{zoneOption.zoneName}"/>
+                    <f:ajax render="clock meme" onevent="reattachListener"/>
                 </h:selectOneMenu>
             </h:form>
         </div>
-        <!-- TODO Replace with va:meme -->
-        <h:graphicImage library="img" name="memes/tokyo.png" id="meme" />
-        <!-- -->
+        <va:zoneMeme zone="#{zoneBean.zone}" id="meme"/>
         <div id="blocking-wall" class="disabled"></div>
-        <h:outputScript library="js" name="misc.js" target="body" defer="true"/>
-        <h:outputScript library="js" name="clock.js" target="body" defer="true"/>
-        <h:outputScript library="js" name="meme.js" target="body" defer="true"/>
-        <h:outputScript target="body" defer="true">
+
+        <h:outputScript library="js" name="misc.js" target="head" defer="true"/>
+        <h:outputScript library="js" name="clock.js" target="head" defer="true"/>
+        <h:outputScript library="js" name="meme.js" target="head" defer="true"/>
+        <h:outputScript target="head" defer="true">
             document.addEventListener('DOMContentLoaded', () => {
+                console.log(1)
                 miscMain();
                 clockMain();
                 memeMain();
