@@ -43,7 +43,6 @@ public class ShotListBean implements Serializable {
             return;
         }
         FacesContext.getCurrentInstance().getPartialViewContext().getEvalScripts().add("cleanAll();");
-        FacesContext.getCurrentInstance().getPartialViewContext().getEvalScripts().add("test();");
         previousShots = shotsToLoad;
         System.out.println("Loaded " + previousShots.size() + " shots.");
         if (!previousShots.isEmpty()) {
