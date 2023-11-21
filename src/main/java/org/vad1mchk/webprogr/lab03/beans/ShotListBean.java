@@ -55,7 +55,7 @@ public class ShotListBean implements Serializable {
                                     shot.getR() + ", " +
                                     shot.isHit() + ");"
                     );
-                    System.out.print('+');
+                System.out.print('+');
             });
             FacesContext.getCurrentInstance().getPartialViewContext().getEvalScripts().add("");
         } else {
