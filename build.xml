@@ -43,8 +43,8 @@
 
     <target name="music">
         <sound>
-            <success source="${source.dir}/main/resources/success.wav"/>
-            <fail source="${source.dir}/main/resources/failure.wav"/>
+            <success source="${source.dir}/main/resources/music/success.wav"/>
+            <fail source="${source.dir}/main/resources/music/failure.wav"/>
         </sound>
         <runtarget target="build"/>
     </target>
