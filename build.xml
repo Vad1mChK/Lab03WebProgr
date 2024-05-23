@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<project name="Kill me, later"
+<project name="Traumatized and depressed"
          xmlns:if="ant:if"
          default="build">
     <property file="build.properties"/>
@@ -26,7 +26,8 @@
 
     <target name="compile" depends="init">
         <javac destdir="${target.classes}"
-               srcdir="${main.source}">
+               srcdir="${main.source}"
+               includeantruntime="true">
             <classpath refid="classpath.source"/>
         </javac>
         <echo message="Successfully compiled main sources"/>
@@ -211,7 +212,7 @@
             <fileset dir="/usr/share/groovy/lib" includes="*.jar" />
         </path>
         <script language="groovy" classpathref="groovy.classpath">
-            println "\u001b[32mIf you don't accept this lab, Vadim will kill himself\u001b[0m"
+            println "\u001b[32mIf you don't accept this lab, idk frankly\u001b[0m"
         </script>
     </target>
 
